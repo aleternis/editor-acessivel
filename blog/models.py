@@ -33,3 +33,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Question(models.Model):
+    text = models.TextField()
+    alternativeA=models.TextField()
+    alternativeB=models.TextField()
+    alternativeC=models.TextField()
+    alternativeD=models.TextField()
+    alternativeE=models.TextField()
+    
+    def create(self):
+        self.save()
+

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post, Comment
+from .models import Post, Comment, Question
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, QuestionForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -89,4 +89,16 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('blog.views.post_detail', pk=post_pk)
+
+def question_new(request):
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog.views.question_new')
+    else:
+        form = QuestionForm()
+    return render(request, 'blog/question_edit.html', {'form': form})
+
+
 
