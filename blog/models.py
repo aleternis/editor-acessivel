@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
@@ -36,12 +37,12 @@ class Comment(models.Model):
 
 
 class Question(models.Model):
-    text = models.TextField()
-    alternativeA=models.TextField()
-    alternativeB=models.TextField()
-    alternativeC=models.TextField()
-    alternativeD=models.TextField()
-    alternativeE=models.TextField()
+    text = RichTextField()
+    alternativeA = RichTextField()
+    alternativeB = RichTextField()
+    alternativeC = RichTextField()
+    alternativeD = RichTextField()
+    alternativeE = RichTextField()
     
     def create(self):
         self.save()
