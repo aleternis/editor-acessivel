@@ -46,4 +46,6 @@ class Question(models.Model):
     
     def create(self):
         self.save()
+    def __str__(self):
+        return self.text
 
