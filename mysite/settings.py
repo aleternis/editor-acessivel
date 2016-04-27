@@ -44,25 +44,8 @@ INSTALLED_APPS = [
 CKEDITOR_UPLOAD_PATH = ''
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': [
-            ['Undo', 'Redo',
-             '-', 'Bold', 'Italic', 'Underline',
-             '-', 'Link', 'Unlink', 'Anchor',
-             '-', 'Format',
-             '-', 'SpellChecker', 'Scayt',
-             '-', 'Maximize',
-             ],
-            ['HorizontalRule',
-             '-', 'Table',
-             '-', 'BulletedList', 'NumberedList',
-             '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',
-             '-', 'SpecialChar',
-             '-', 'Source',
-             '-', 'About',
-             ]
-        ],
-        'toolbarCanCollapse': False,
-    }
+        'toolbar': None,
+    },
 }
 
 MIDDLEWARE_CLASSES = [

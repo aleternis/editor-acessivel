@@ -5,7 +5,28 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+
+
+
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                    console.log("oi");
+                    $("#id_text").bind('input propertychange', function(){
+                        var x = document.getElementsByTagName("p");
+                            alert(x.length);    
+                    });
+                });
+            </script>
+
+
+
+
+
 </head>
 <body>
     <div class="page-header">
