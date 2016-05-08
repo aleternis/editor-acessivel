@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
@@ -17,6 +20,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+        
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
@@ -44,8 +48,13 @@ class Question(models.Model):
     alternativeD = RichTextField()
     alternativeE = RichTextField()
     
+    def clean(self):
+        if len(self.text) > 10:
+            raise ValidationError(_('text is bigger than 10'))
+
     def create(self):
         self.save()
+
     def __str__(self):
         return self.text
 
