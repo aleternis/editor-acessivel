@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% for question in questions %}
+<div class="post">
+	<h1><a href="{% url 'blog.views.question_detail' pk=question.pk %}">{{ question.text|safe }}</a></h1>
+	<p>{{ question.alternativeA|safe }}</p>
+
+
+
+</div>
+{% endfor %}
+{% endblock content %}

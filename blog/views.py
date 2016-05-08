@@ -90,6 +90,14 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('blog.views.post_detail', pk=post_pk)
 
+def question_detail(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    return render(request, 'blog/question_detail.html', {'question': question})
+
+def question_list(request):
+    questions = Question.objects.all()
+    return render(request, 'blog/question_list.html', {'questions': questions})
+
 def question_new(request):
     if request.method == "POST":
         form = QuestionForm(request.POST)

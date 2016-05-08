@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+<h1>{{ question.text | safe }}</h1>
+<h3>{{ question.alternativeA | safe }}</h3>
+<h3>{{ question.alternativeB | safe }}</h3>
+<h3>{{ question.alternativeC | safe }}</h3>
+<h3>{{ question.alternativeD | safe }}</h3>
+<h3>{{ question.alternativeE | safe }}</h3>
+
+
+
+{% endblock %}

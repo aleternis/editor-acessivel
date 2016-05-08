@@ -49,8 +49,8 @@ class Question(models.Model):
     alternativeE = RichTextField()
     
     def clean(self):
-        if len(self.text) > 10:
-            raise ValidationError(_('text is bigger than 10'))
+        if len(self.text) > 100:
+            raise ValidationError(_('text is bigger than 100'))
 
     def create(self):
         self.save()
