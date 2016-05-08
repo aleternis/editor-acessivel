@@ -94,6 +94,7 @@ def question_detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
     return render(request, 'blog/question_detail.html', {'question': question})
 
+@login_required
 def question_list(request):
     questions = Question.objects.all()
     return render(request, 'blog/question_list.html', {'questions': questions})
