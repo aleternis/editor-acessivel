@@ -49,13 +49,24 @@ class Question(models.Model):
     alternativeE = HTMLField()
 
     def clean(self):
-        self.text.replace(' ', '')
-        if len(self.text) > 100:
-            raise ValidationError(_('text is bigger than 100'))
+        output = self.verify_paragraph_length(self.text)
+        if output:
+            raise ValidationError(_(output))
 
     def create(self):
         self.save()
 
     def __str__(self):
-        return self.text
+        return self.id
+
+    def verify_paragraph_length(self, text):
+        sentences = text.split("</p>")
+        output = ''
+        for index, i in enumerate(sentences, start=1):
+            if len(i.split()) > 10:
+                output += 'paragraph %d is too long\n' % index
+        return output
+
+
+
 
