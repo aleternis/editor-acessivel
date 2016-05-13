@@ -35,7 +35,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tcc',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -50,14 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'ckeditor',
+    'tinymce',
 ]
 
-CKEDITOR_UPLOAD_PATH = ''
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': None,
-    },
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
 }
 
 MIDDLEWARE_CLASSES = [
