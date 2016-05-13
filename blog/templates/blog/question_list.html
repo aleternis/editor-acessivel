@@ -3,8 +3,8 @@
 {% block content %}
 {% for question in questions %}
 <div class="post">
-	<h1><a href="{% url 'blog.views.question_detail' pk=question.pk %}">{{ question.text|safe }}</a></h1>
-	<p>{{ question.alternativeA|safe }}</p>
+	<h1><a href="{% url 'blog.views.question_detail' pk=question.pk %}">{{ question.id }}</a></h1>
+	<p>{{ question.text|safe }}</p>
 
 
 
