@@ -61,11 +61,15 @@ class Question(models.Model):
 
     def verify_paragraph_length(self, text):
         sentences = text.split("</p>")
+        alt = 'alt=""'
         output = ''
         for index, i in enumerate(sentences, start=1):
             if len(i.split()) > 10:
                 output += 'paragraph %d is too long\n' % index
+            if alt in i:
+                output += 'imagem sem descricao\n'    
         return output
+
 
 
 
