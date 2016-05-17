@@ -51,7 +51,7 @@ class Question(models.Model):
     def clean(self):
         output = self.verify_paragraph_length(self.text)
         if output:
-            raise ValidationError(_(output))
+            raise ValidationError(output)
 
     def create(self):
         self.save()
@@ -62,12 +62,12 @@ class Question(models.Model):
     def verify_paragraph_length(self, text):
         sentences = text.split("</p>")
         alt = 'alt=""'
-        output = ''
+        output = []
         for index, i in enumerate(sentences, start=1):
             if len(i.split()) > 10:
-                output += 'paragraph %d is too long\n' % index
+                output.append('paragraph %d is too long' % index)
             if alt in i:
-                output += 'imagem sem descricao\n'    
+                output.append('imagem sem descricao')
         return output
 
 
