@@ -57,7 +57,7 @@ class Question(models.Model):
         self.save()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def verify_paragraph_length(self, text):
         sentences = text.split("</p>")
