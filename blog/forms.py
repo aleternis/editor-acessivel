@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Comment, Question
+from .models import Post, Comment, Question, Exam, ExamTemplate
 
 
 class PostForm(forms.ModelForm):
@@ -15,8 +15,20 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('author', 'text',)
 
+class ExamForm(forms.ModelForm):
+
+    class Meta:
+        model = Exam
+        fields = ('title', 'template')
+
+class ExamTemplateForm(forms.ModelForm):
+
+    class Meta:
+        model = ExamTemplate
+        fields = ('name', 'questions', 'answers')
 
 class QuestionForm(forms.ModelForm):
+
 	class Meta:
 		model = Question
-		fields = ('text', 'alternativeA', 'alternativeB', 'alternativeC', 'alternativeD', 'alternativeE')
+		fields = ('exam', 'text', 'alternativeA', 'alternativeB', 'alternativeC', 'alternativeD', 'alternativeE')
