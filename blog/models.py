@@ -39,8 +39,18 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+class ExamTemplate(models.Model):
+    name = models.CharField(max_length=300)
+    questions = models.IntegerField()
+    answers = models.IntegerField()
+
+class Exam(models.Model):
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=300)
+    template = models.ForeignKey('blog.ExamTemplate')
 
 class Question(models.Model):
+    exam = models.ForeignKey('blog.Exam')
     text = HTMLField()
     alternativeA = HTMLField()
     alternativeB = HTMLField()
