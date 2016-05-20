@@ -61,7 +61,7 @@ def post_publish(request, pk):
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect('blog.views.post_list')    
+    return redirect('blog.views.post_list')
 
 @login_required
 def add_comment_to_post(request, pk):
@@ -75,7 +75,7 @@ def add_comment_to_post(request, pk):
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/add_comment_to_post.html', {'form': form})    
+    return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 @login_required
 def comment_approve(request, pk):
@@ -108,6 +108,27 @@ def question_new(request):
     else:
         form = QuestionForm()
     return render(request, 'blog/question_edit.html', {'form': form})
+
+def exam_new(request):
+    if request.method == "POST":
+        form = ExamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog.views.exam_new')
+    else:
+        form = ExamForm()
+    return render(request, 'blog/exam_edit.html', {'form': form})
+
+def exam_template_new(request):
+    if request.method == "POST":
+        form = ExamTemplateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog.views.exam_template_new')
+    else:
+        form = ExamTemplateForm()
+    return render(request, 'blog/exam_template_edit.html', {'form': form})
+
 
 
 
