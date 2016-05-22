@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post, Comment, Question
+from .models import Post, Comment, Question, Exam, ExamTemplate
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm
 from django.contrib.auth.decorators import login_required
@@ -119,6 +119,10 @@ def exam_new(request):
         form = ExamForm()
     return render(request, 'blog/exam_edit.html', {'form': form})
 
+def exam_detail(request, pk):
+    exam = get_object_or_404(Exam, pk=pk)
+    return render(request, 'blog/exam_detail.html', {'exam': exam})
+
 def exam_template_new(request):
     if request.method == "POST":
         form = ExamTemplateForm(request.POST)
@@ -128,6 +132,10 @@ def exam_template_new(request):
     else:
         form = ExamTemplateForm()
     return render(request, 'blog/exam_template_edit.html', {'form': form})
+
+def exam_template_detail(request, pk):
+    exam_template = get_object_or_404(ExamTemplate, pk=pk)
+    return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
 
 
 
