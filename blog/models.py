@@ -3,6 +3,7 @@ from django.utils import timezone
 from tinymce.models import HTMLField
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 
 class Post(models.Model):
@@ -24,7 +25,6 @@ class Post(models.Model):
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
-
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments')
     author = models.CharField(max_length=200)
@@ -44,13 +44,19 @@ class ExamTemplate(models.Model):
     questions = models.IntegerField()
     answers = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 class Exam(models.Model):
-    author = models.ForeignKey('auth.User')
+    author = models.ForeignKey(User)
     title = models.CharField(max_length=300)
     template = models.ForeignKey('blog.ExamTemplate')
 
+    def __str__(self):
+        return self.title
+
 class Question(models.Model):
-    exam = models.ForeignKey('blog.Exam')
+    exam = models.ForeignKey('blog.Exam', default=1)
     text = HTMLField()
     alternativeA = HTMLField()
     alternativeB = HTMLField()

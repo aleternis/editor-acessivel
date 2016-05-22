@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post, Comment, Question
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm, CommentForm, QuestionForm
+from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm
 from django.contrib.auth.decorators import login_required
 
 
