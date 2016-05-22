@@ -48,12 +48,13 @@ class ExamTemplate(models.Model):
         return self.name
 
 class Exam(models.Model):
-    author = models.ForeignKey(User)
+    author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=300)
     template = models.ForeignKey('blog.ExamTemplate')
 
     def __str__(self):
         return self.title
+
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)

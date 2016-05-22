@@ -113,7 +113,11 @@ def exam_new(request):
     if request.method == "POST":
         form = ExamForm(request.POST)
         if form.is_valid():
-            form.save()
+
+            exam = form.save(commit=False)
+            exam.author = request.user
+           # post.published_date = timezone.now()
+            exam.save()
             return redirect('blog.views.exam_new')
     else:
         form = ExamForm()
