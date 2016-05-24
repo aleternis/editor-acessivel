@@ -3,7 +3,25 @@
 
 
 {% block content %}
+
+
+<button onclick="myFunction()">Try it</button>
+
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var btn = document.getElementById("id_text_ifr");
+    var x = btn.contentWindow.document.body.innerHTML;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+
 <h1>New question</h1>
+
+
 
 <form method="POST" class="post-form">{% csrf_token %}
 	{{ form.media }}
