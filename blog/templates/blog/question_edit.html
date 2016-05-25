@@ -8,29 +8,34 @@
 <button onclick="myFunction()">Try it</button>
 
 
-<p id="demo"></p>
-
-<script>
-function myFunction() {
-    var btn = document.getElementById("id_text_ifr");
-    var x = btn.contentWindow.document.body.innerHTML;
-    document.getElementById("demo").innerHTML = x;
-}
-</script>
-
-
 <h1>New question</h1>
+Enter your name: <input type="text" id="fname">
 
 
 
 <form method="POST" class="post-form">{% csrf_token %}
+
 	{{ form.media }}
 	{{ form.as_p }}
+
+
 
 	<button type="submit" class="save btn btn-default">Salvar</button>
 </form>
 
 
+<script type="text/javascript">
+
+
+function myFunction() {
+    var btn = document.getElementById("id_text_ifr");
+    var x = btn.contentWindow.document.body.innerHTML;
+    alert(x);
+}
+
+document.onchange = function() {myFunction()};
+
+</script>
 
 
 
