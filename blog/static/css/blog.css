@@ -13,6 +13,10 @@
 .content {
     margin-left: 40px;
 }
+.menulateral{
+    margin-left: -35px;
+
+}
 
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
@@ -47,4 +51,23 @@ h1, h2, h3, h4 {
 }
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }

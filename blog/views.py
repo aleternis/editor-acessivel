@@ -127,6 +127,11 @@ def exam_detail(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
     return render(request, 'blog/exam_detail.html', {'exam': exam})
 
+@login_required
+def exam_list(request):
+    exams = Exam.objects.all()
+    return render(request, 'blog/exam_list.html', {'exams': exams})    
+
 def exam_template_new(request):
     if request.method == "POST":
         form = ExamTemplateForm(request.POST)
@@ -140,7 +145,6 @@ def exam_template_new(request):
 def exam_template_detail(request, pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
-
 
 
 
