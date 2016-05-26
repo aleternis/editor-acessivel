@@ -26,12 +26,25 @@ Enter your name: <input type="text" id="fname">
 
 <script type="text/javascript">
 
+/*$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+ alert("document is ready");
+});*/
 
-function myFunction() {
-    var btn = document.getElementById("id_text_ifr");
-    var x = btn.contentWindow.document.body.innerHTML;
-    alert(x);
-}
+$(window).load(function() {
+ // executes when complete page is fully loaded, including all frames, objects and images
+ //$("#id_text").bind('input propertychange', function(){
+ //                       var x = document.getElementsByTagName("p");
+ //                           alert(x.length);    
+ //});
+ alert("window is loaded");
+});
+
+//function myFunction() {
+//    var btn = document.getElementById("id_text_ifr");
+//    var x = btn.contentWindow.document.body.innerHTML;
+//    alert(x);
+//}
 
 document.onchange = function() {myFunction()};
 
