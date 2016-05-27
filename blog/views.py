@@ -145,6 +145,11 @@ def exam_template_new(request):
 def exam_template_detail(request, pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
-
+@login_required
+def notfinisehd_exams(request):
+    return render(request, 'blog/not_finished_exams.html')
+@login_required
+def finisehd_exams (request):    
+    return render(request, 'blog/finished_exams.html')
 
 
