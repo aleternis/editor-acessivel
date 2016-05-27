@@ -135,7 +135,7 @@ def exam_detail(request, pk):
 
 @permission_required('blog.exam_list')
 def exam_list(request):
-    exams = Exam.objects.all()
+    exams = Exam.objects.filter(author=request.user)
     return render(request, 'blog/exam_list.html', {'exams': exams})    
 
 @permission_required('blog.add_examtemplate',raise_exception=True)
