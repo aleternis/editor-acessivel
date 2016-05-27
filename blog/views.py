@@ -4,6 +4,8 @@ from .models import Post, Comment, Question, Exam, ExamTemplate
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+
 
 
 
@@ -90,15 +92,17 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('blog.views.post_detail', pk=post_pk)
 
+@permission_required('blog.question_detail',raise_exception=True)
 def question_detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
     return render(request, 'blog/question_detail.html', {'question': question})
 
-@login_required
+@permission_required('blog.question_list',raise_exception=True)
 def question_list(request):
     questions = Question.objects.all()
     return render(request, 'blog/question_list.html', {'questions': questions})
 
+@permission_required('blog.add_question',raise_exception=True)
 def question_new(request):
     if request.method == "POST":
         form = QuestionForm(request.POST)
@@ -109,6 +113,7 @@ def question_new(request):
         form = QuestionForm()
     return render(request, 'blog/question_edit.html', {'form': form})
 
+@permission_required('blog.add_exam',raise_exception=True)
 def exam_new(request):
     if request.method == "POST":
         form = ExamForm(request.POST)
@@ -123,15 +128,17 @@ def exam_new(request):
         form = ExamForm()
     return render(request, 'blog/exam_edit.html', {'form': form})
 
+@permission_required('blog.exam_detail',raise_exception=True)
 def exam_detail(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
     return render(request, 'blog/exam_detail.html', {'exam': exam})
 
-@login_required
+@permission_required('blog.exam_list')
 def exam_list(request):
     exams = Exam.objects.all()
     return render(request, 'blog/exam_list.html', {'exams': exams})    
 
+@permission_required('blog.add_examtemplate',raise_exception=True)
 def exam_template_new(request):
     if request.method == "POST":
         form = ExamTemplateForm(request.POST)
@@ -142,12 +149,15 @@ def exam_template_new(request):
         form = ExamTemplateForm()
     return render(request, 'blog/exam_template_edit.html', {'form': form})
 
+@permission_required('blog.exam_template_detail',raise_exception=True)
 def exam_template_detail(request, pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
+
 @login_required
 def notfinisehd_exams(request):
     return render(request, 'blog/not_finished_exams.html')
+
 @login_required
 def finisehd_exams (request):    
     return render(request, 'blog/finished_exams.html')

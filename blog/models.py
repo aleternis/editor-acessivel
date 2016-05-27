@@ -44,6 +44,12 @@ class ExamTemplate(models.Model):
     questions = models.IntegerField()
     answers = models.IntegerField()
 
+    class Meta:
+        permissions = (
+            ("exam_template_list", "Can see template list"),
+            ("exam_template_detail", "Can see template detail"),
+        )
+
     def __str__(self):
         return self.name
 
@@ -51,6 +57,12 @@ class Exam(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=300)
     template = models.ForeignKey('blog.ExamTemplate')
+
+    class Meta:
+        permissions = (
+            ("exam_list", "Can see exam list"),
+            ("exam_detail", "Can see exam detail"),
+        )
 
     def __str__(self):
         return self.title
@@ -64,6 +76,11 @@ class Question(models.Model):
     alternativeC = HTMLField()
     alternativeD = HTMLField()
     alternativeE = HTMLField()
+    class Meta:
+        permissions = (
+            ("question_list", "Can see question list"),
+            ("question_detail", "Can see question detail"),
+        )
 
     def clean(self):
         output = self.verify_paragraph_length(self.text)
