@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^question/$', views.question_list, name='question_list'),
     url(r'^question/(?P<pk>[0-9]+)/$', views.question_detail),
     url(r'^exam/new/$', views.exam_new, name='exam_new'),
-    url(r'^exam/(?P<pk>[0-9]+)/$', views.exam_detail),
+    url(r'^exam/(?P<pk>[0-9]+)/$', views.question_list),
     url(r'^examtemplate/new/$', views.exam_template_new, name='exam_template_new'),
     url(r'^examtemplate/(?P<pk>[0-9]+)/$', views.exam_template_detail),
     url(r'^tinymce/', include('tinymce.urls')),

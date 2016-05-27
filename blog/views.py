@@ -98,8 +98,8 @@ def question_detail(request, pk):
     return render(request, 'blog/question_detail.html', {'question': question})
 
 @permission_required('blog.question_list',raise_exception=True)
-def question_list(request):
-    questions = Question.objects.all()
+def question_list(request, pk):
+    questions = Question.objects.filter(exam=pk)
     return render(request, 'blog/question_list.html', {'questions': questions})
 
 @permission_required('blog.add_question',raise_exception=True)
@@ -131,7 +131,7 @@ def exam_new(request):
 @permission_required('blog.exam_detail',raise_exception=True)
 def exam_detail(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
-    return render(request, 'blog/exam_detail.html', {'exam': exam})
+    return render(request, 'blog/question_list.html', {'exam': exam})
 
 @permission_required('blog.exam_list')
 def exam_list(request):

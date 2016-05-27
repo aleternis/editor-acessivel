@@ -24,7 +24,7 @@
 							<li><h3>Provas</h3></li>
 
 							{% for exam in exams %}
-							<li><a href="{% url 'blog.views.exam_detail' pk=exam.pk %}">{{ exam.title }}</a></li>
+							<li><a href="{% url 'blog.views.question_list' pk=exam.pk %}">{{ exam.title }}</a></li>
 							{% endfor %}
 
 						</ul>
