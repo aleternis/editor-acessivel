@@ -11,11 +11,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 
 
 </head>
@@ -33,49 +35,49 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
+
         {% if user.is_authenticated %}
-            {% if perms.blog.add_exam or perms.blog.add_exam%} 
-                <li class="dropdown">
-                
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nova<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                    {% if perms.blog.add_exam %}
-                        <li><a href="{% url 'exam_new' %}">Criar Prova</a></li>
-                    {% endif %}
-                    {% if perms.blog.add_question %}
-                        <li><a href="{% url 'question_new' %}">Criar Questão</a></li>
-                    {% endif %}
-                    </ul>
-                </li>
-            {% endif %}
-            <li class="dropdown">
+        {% if perms.blog.add_exam or perms.blog.add_exam%} 
+        <li class="dropdown">
+
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nova<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                {% if perms.blog.add_exam %}
+                <li><a href="{% url 'exam_new' %}">Criar Prova</a></li>
+                {% endif %}
+                {% if perms.blog.add_question %}
+                <li><a href="{% url 'question_new' %}">Criar Questão</a></li>
+                {% endif %}
+            </ul>
+        </li>
+        {% endif %}
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Provas<span class="caret"></span></a>
             <ul class="dropdown-menu">
-            <li><a href="{% url 'not_finished_exams' %}">Provas Não Finalizadas</a></li>
-            <li><a href="{% url 'finished_exams' %}">Provas Finalizadas</a></li>
+                <li><a href="{% url 'not_finished_exams' %}">Provas Não Finalizadas</a></li>
+                <li><a href="{% url 'finished_exams' %}">Provas Finalizadas</a></li>
             </ul>
-            </li>
-            {% if perms.blog.add_examtemplate %}
-            <li><a href="{% url 'exam_template_new' %}">Criar Template</a></li>
-            {% endif %}
-            <li><a href="#">Page 3</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+        </li>
+        {% if perms.blog.add_examtemplate %}
+        <li><a href="{% url 'exam_template_new' %}">Criar Template</a></li>
+        {% endif %}
+        <li><a href="#">Page 3</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
 
-            <!--<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>-->
+        <!--<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>-->
 
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>Hello {{ user.username }}</a></li>
-            <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>    
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Hello {{ user.username }}</a></li>
+        <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>    
 
 
         {% else %}
 
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span></a></li>
         {% endif %}
 
-</ul>
+    </ul>
 </div>
 </div>
 </nav>

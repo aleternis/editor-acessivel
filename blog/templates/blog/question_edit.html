@@ -5,11 +5,11 @@
 {% block content %}
 
 
-<button onclick="myFunction()">Try it</button>
+<button onclick="myFunction()">Teste</button>
 
 
 <h1>New question</h1>
-Enter your name: <input type="text" id="fname">
+Teste: <input type="text" id="fname">
 
 
 
@@ -24,29 +24,41 @@ Enter your name: <input type="text" id="fname">
 </form>
 
 
-<script type="text/javascript">
+<script>
 
 /*$(document).ready(function() {
- // executes when HTML-Document is loaded and DOM is ready
- alert("document is ready");
+  // executes when HTML-Document is loaded and DOM is ready
+  alert("document is ready");
 });*/
 
 $(window).load(function() {
   //executes when complete page is fully loaded, including all frames, objects and images
- $document.getElementById("id_text_ifr").bind('input propertychange', function(){
-                        var x = document.getElementsByTagName("p");
-                            alert(x.length);    
- });
- alert("window is loaded");
+  //$("#id_text").bind('input propertychange', function(){
+  //                       var x = document.getElementsByTagName("p");
+  //                           alert(x.length);    
+  //});
+
+
+  //alert("window is loaded");
+  //document.onchange = function() {myFunction()};
+
+$(document).ready(function(){
+
+	$('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
+		alert('oi');
+	});
+
 });
 
-//function myFunction() {
-//    var btn = document.getElementById("id_text_ifr");
-//    var x = btn.contentWindow.document.body.innerHTML;
-//    alert(x);
-//}
+});
 
-document.onchange = function() {myFunction()};
+function myFunction() {
+	var btn = document.getElementById("id_text_ifr");
+	var x = btn.contentWindow.document.body.innerHTML;
+	alert(x);
+}
+
+
 
 </script>
 
