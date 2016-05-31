@@ -11,14 +11,10 @@
 <h1>New question</h1>
 Teste: <input type="text" id="fname">
 
-
-
 <form method="POST" class="post-form">{% csrf_token %}
 
 	{{ form.media }}
 	{{ form.as_p }}
-
-
 
 	<button type="submit" class="save btn btn-default">Salvar</button>
 </form>
@@ -32,23 +28,10 @@ Teste: <input type="text" id="fname">
 });*/
 
 $(window).load(function() {
-  //executes when complete page is fully loaded, including all frames, objects and images
-  //$("#id_text").bind('input propertychange', function(){
-  //                       var x = document.getElementsByTagName("p");
-  //                           alert(x.length);    
-  //});
-
-
-  //alert("window is loaded");
-  //document.onchange = function() {myFunction()};
-
-$(document).ready(function(){
 
 	$('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
 		alert('oi');
 	});
-
-});
 
 });
 
