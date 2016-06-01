@@ -3,13 +3,7 @@
 
 
 {% block content %}
-
-
-<button onclick="myFunction()">Teste</button>
-
-
-<h1>New question</h1>
-Teste: <input type="text" id="fname">
+<div id="teste"></div>
 
 <form method="POST" class="post-form">{% csrf_token %}
 
@@ -30,16 +24,26 @@ Teste: <input type="text" id="fname">
 $(window).load(function() {
 
 	$('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
-		alert('oi');
+		var btn = document.getElementById("id_text_ifr");
+		var listP = btn.contentWindow.document.body.getElementsByTagName('p');
+		for (i = 0; i < listP.length; i++) {
+        	if(listP[i].innerHTML.length> 10){
+        		listP[i].style.color = "red";
+        		$("#teste").show();
+        		var paragrafo = i+1
+        		document.getElementById("teste").innerHTML ="Paragrafo "+ paragrafo +" com mais de 10 palavras"; 
+
+        	}else{
+        		listP[i].style.color = "black";
+        		$("#teste").hide(); 	
+        	}
+    	}
+
+
 	});
 
 });
 
-function myFunction() {
-	var btn = document.getElementById("id_text_ifr");
-	var x = btn.contentWindow.document.body.innerHTML;
-	alert(x);
-}
 
 
 
