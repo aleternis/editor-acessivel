@@ -72,3 +72,26 @@ h1, h2, h3, h4 {
     padding-bottom: 12px;
   }
 }
+#id_text_tbl + 
+.popover {
+max-width: 100%; 
+
+
+}
+.popover .popover-title {
+
+  background-color: #cc0000; 
+  text-align: center;
+  color: #FFFFFF;
+
+
+
+}
+
+.popover .popover-content {
+
+
+
+}
+
+

@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div id="teste"></div>
+
 
 <form method="POST" class="post-form">{% csrf_token %}
 
@@ -12,6 +12,8 @@
 
 	<button type="submit" class="save btn btn-default">Salvar</button>
 </form>
+
+
 
 
 <script>
@@ -29,13 +31,30 @@ $(window).load(function() {
 		for (i = 0; i < listP.length; i++) {
         	if(listP[i].innerHTML.length> 10){
         		listP[i].style.color = "red";
-        		$("#teste").show();
-        		var paragrafo = i+1
-        		document.getElementById("teste").innerHTML ="Paragrafo "+ paragrafo +" com mais de 10 palavras"; 
+
+                var paragrafo = i+2
+
+
+
+               $('#id_text_tbl').popover({
+                    title :"<h4>Elementos não conforme!</h4>",
+                    content: "<lu><li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li>" +
+                    "<li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li>"+ 
+                    "<li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li></lu>",
+                    
+                    container: "body",
+                    html: true,
+
+                })
+                $('#id_text_tbl').popover('show')
+
+
+
 
         	}else{
         		listP[i].style.color = "black";
-        		$("#teste").hide(); 	
+                $('#id_text_tbl').popover('hide')
+
         	}
     	}
 
@@ -45,10 +64,5 @@ $(window).load(function() {
 });
 
 
-
-
 </script>
-
-
-
 {% endblock %}
