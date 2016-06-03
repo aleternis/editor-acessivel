@@ -7,10 +7,10 @@
 
 <form method="POST" class="post-form">{% csrf_token %}
 
-	{{ form.media }}
-	{{ form.as_p }}
+    {{ form.media }}
+    {{ form.as_p }}
 
-	<button type="submit" class="save btn btn-default">Salvar</button>
+    <button type="submit" class="save btn btn-default">Salvar</button>
 </form>
 
 
@@ -24,42 +24,56 @@
 });*/
 
 $(window).load(function() {
+    $('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
+        var error = false;
+        var pError = "";
+        var imgError = "";
+        var btn = document.getElementById("id_text_ifr");
+        var listP = btn.contentWindow.document.body.getElementsByTagName('p');
+        var listImg = btn.contentWindow.document.body.getElementsByTagName('img');
+        
+        //Testar tag p
+        for (i = 0; i < listP.length; i++) {
+            if(listP[i].innerHTML.length> 10){
+                listP[i].style.color = "red";
+                pError = "<li> Paragrago " + i + " possui mais de 10 palavras</li>";
+                error=true;
 
-	$('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
-		var btn = document.getElementById("id_text_ifr");
-		var listP = btn.contentWindow.document.body.getElementsByTagName('p');
-		for (i = 0; i < listP.length; i++) {
-        	if(listP[i].innerHTML.length> 10){
-        		listP[i].style.color = "red";
+            }else{
+              listP[i].style.color = "black";
 
-                var paragrafo = i+2
+          }
+      }
+      //Testar tag img
+      for (i = 0; i < listImg.length; i++) {
+        alt = listImg[i].getAttribute('alt');
+        if (alt === '') {
+            imgError = "<li> Imagem " + i + " não possui descrição</li>";
+            error = true;
 
-
-
-               $('#id_text_tbl').popover({
-                    title :"<h4>Elementos não conforme!</h4>",
-                    content: "<lu><li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li>" +
-                    "<li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li>"+ 
-                    "<li>Paragrafo "+ paragrafo +" com mais de 10 palavrasasdasdasd</li></lu>",
-                    
-                    container: "body",
-                    html: true,
-
-                })
-                $('#id_text_tbl').popover('show')
-
-
-
-
-        	}else{
-        		listP[i].style.color = "black";
-                $('#id_text_tbl').popover('hide')
-
-        	}
-    	}
+        }
+    }
+    //mostrar error e exibir pop up
+    if(error){
+        $('#id_text_tbl').popover({
+            title :"<h4>Elementos não conforme!</h4>",
+            content: "<lu>" +
+            pError+
+            imgError+
+            "</lu>",
+            container: "body",
+            html: true,
+        })
 
 
-	});
+        $('#id_text_tbl').popover('show')
+    }else{
+
+        $('#id_text_tbl').popover('hide')
+    }
+
+
+});
 
 });
 
