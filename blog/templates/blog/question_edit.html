@@ -28,15 +28,21 @@ $(window).load(function() {
         var error = false;
         var pError = "";
         var imgError = "";
+        var errorNmb = "";
         var btn = document.getElementById("id_text_ifr");
         var listP = btn.contentWindow.document.body.getElementsByTagName('p');
         var listImg = btn.contentWindow.document.body.getElementsByTagName('img');
         
         //Testar tag p
         for (i = 0; i < listP.length; i++) {
-            if(listP[i].innerHTML.length> 10){
+            if(listP[i].innerHTML.split(" ").length> 10){
                 listP[i].style.color = "red";
-                pError = "<li> Paragrago " + i + " possui mais de 10 palavras</li>";
+                if(i==0){
+                    errorNmb = errorNmb + (i+1);
+                }else{
+                    errorNmb = errorNmb + ", " +(i+1);
+                }
+                pError = "<li> Paragrafo(s) " + errorNmb + " possui(em) mais de 10 palavras</li>";
                 error=true;
 
             }else{
@@ -45,14 +51,21 @@ $(window).load(function() {
           }
       }
       //Testar tag img
+      errorNmb="";
       for (i = 0; i < listImg.length; i++) {
         alt = listImg[i].getAttribute('alt');
         if (alt === '') {
-            imgError = "<li> Imagem " + i + " não possui descrição</li>";
+            if(i==0){
+                errorNmb = errorNmb + (i+1);
+            }else{
+                errorNmb = errorNmb + ", " + (i+1);
+            }
+            imgError = "<li> Imagem(s) " + errorNmb + " não possui(em) descrição</li>";
             error = true;
 
         }
     }
+
     //mostrar error e exibir pop up
     if(error){
         $('#id_text_tbl').popover({
@@ -63,8 +76,13 @@ $(window).load(function() {
             "</lu>",
             container: "body",
             html: true,
+            animation: false,
         })
-
+        $('#id_text_tbl').data('bs.popover').options.content =
+        "<lu>" +
+        pError+
+        imgError+
+        "</lu>" ;
 
         $('#id_text_tbl').popover('show')
     }else{
