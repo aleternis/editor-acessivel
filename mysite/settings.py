@@ -28,7 +28,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DATABASES = {
-
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tcc',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 
@@ -156,4 +163,3 @@ try:
     from .local_settings import *
 except ImportError:
     pass
-
