@@ -54,15 +54,18 @@ $(window).load(function() {
       errorNmb="";
       for (i = 0; i < listImg.length; i++) {
         alt = listImg[i].getAttribute('alt');
-        if (alt === '') {
+        if (alt === "") {
             if(i==0){
                 errorNmb = errorNmb + (i+1);
             }else{
                 errorNmb = errorNmb + ", " + (i+1);
             }
             imgError = "<li> Imagem(s) " + errorNmb + " não possui(em) descrição</li>";
-            error = true;
 
+            listImg[i].style.border='2px solid red';
+            error = true;
+        }else{
+            listImg[i].style.border='none';
         }
     }
 
