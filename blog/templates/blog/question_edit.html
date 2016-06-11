@@ -29,6 +29,7 @@ $(window).load(function() {
         var pError = "";
         var imgError = "";
         var errorNmb = "";
+        var errorFormat = [];
         var btn = document.getElementById("id_text_ifr");
         var listP = btn.contentWindow.document.body.getElementsByTagName('p');
         var listImg = btn.contentWindow.document.body.getElementsByTagName('img');
@@ -37,12 +38,8 @@ $(window).load(function() {
         for (i = 0; i < listP.length; i++) {
             if(listP[i].innerHTML.split(" ").length> 10){
                 listP[i].style.color = "red";
-                if(i==0){
-                    errorNmb = errorNmb + (i+1);
-                }else{
-                    errorNmb = errorNmb + ", " +(i+1);
-                }
-                pError = "<li> Paragrafo(s) " + errorNmb + " possui(em) mais de 10 palavras</li>";
+                errorFormat.push(i);
+                
                 error=true;
 
             }else{
@@ -50,17 +47,15 @@ $(window).load(function() {
 
           }
       }
+
+      pError = showErrorP(errorFormat)
+
       //Testar tag img
-      errorNmb="";
+      errorFormat=[];
       for (i = 0; i < listImg.length; i++) {
         alt = listImg[i].getAttribute('alt');
         if (alt === "") {
-            if(i==0){
-                errorNmb = errorNmb + (i+1);
-            }else{
-                errorNmb = errorNmb + ", " + (i+1);
-            }
-            imgError = "<li> Imagem(s) " + errorNmb + " não possui(em) descrição</li>";
+            errorFormat.push(i);
 
             listImg[i].style.border='2px solid red';
             error = true;
@@ -68,7 +63,7 @@ $(window).load(function() {
             listImg[i].style.border='none';
         }
     }
-
+    imgError = showErrorIMG(errorFormat)
     //mostrar error e exibir pop up
     if(error){
         $('#id_text_tbl').popover({
@@ -93,7 +88,47 @@ $(window).load(function() {
         $('#id_text_tbl').popover('hide')
     }
 
+function showErrorP(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
+    }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
+        }else if(errorArray.length>1){
 
+            for (i = 0; i < errorArray.length; i++) {
+                if(i!=(errorArray.length-1)){
+                    eNumb = eNumb + (errorArray[i]+1) + ", ";
+                }else{
+                    eNumb = eNumb + (errorArray[i]+1);
+                }
+            }
+            return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
+    } 
+}
+
+function showErrorIMG(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
+    }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> A imagem" + eNumb + " não possui descrição</li>"
+        }else if(errorArray.length>1){
+
+            for (i = 0; i < errorArray.length; i++) {
+                if(i!=(errorArray.length-1)){
+                    eNumb = eNumb + (errorArray[i]+1) + ", ";
+                }else{
+                    eNumb = eNumb + (errorArray[i]+1);
+                }
+            }
+            return "<li> As imagens " + eNumb + " não possuem descrição</li>";
+    } 
+}
 });
 
 });
