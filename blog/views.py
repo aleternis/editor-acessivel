@@ -93,6 +93,7 @@ def comment_remove(request, pk):
 def question_detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
     num_options = question.exam.template.questions
+    exam_pk = question.exam.id
     num_options_done = Option.objects.filter(question=pk).count()
     options = None
     if num_options_done > 0:
@@ -111,7 +112,7 @@ def question_detail(request, pk):
         todo.append(chr(ord('a')+i+num_options_done))
 
     return render(request, 'blog/question_detail.html', {'question': question, 'todo': todo,
-     'options': options})
+     'options': options, 'exam_pk': exam_pk})
 
 @permission_required('blog.question_list',raise_exception=True)
 def question_list(request, pk):
@@ -119,15 +120,22 @@ def question_list(request, pk):
     exam = Exam.objects.get(pk=pk)
     total_questions = exam.template.questions
     questions_done = questions.count()
-    question_progress = '{0}/{1} questoes concluidas'.format(questions_done,total_questions)
-    return render(request, 'blog/question_list.html', {'questions': questions, 'question_progress':question_progress})
+    return render(request, 'blog/question_list.html', {'questions': questions, 'questions_done':questions_done,
+        'total_questions':total_questions,'exam_pk':pk})
 
 @permission_required('blog.add_question',raise_exception=True)
-def question_new(request):
+def choose_exam(request):
+    exams = Exam.objects.filter(author=request.user)
+    return render(request, 'blog/choose_exam_list.html', {'exams': exams})
+
+@permission_required('blog.add_question',raise_exception=True)
+def question_new(request, pk):
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
-            new_form = form.save()
+            new_form = form.save(commit=False)
+            new_form.exam = get_object_or_404(Exam, pk=pk)
+            new_form.save()
             return HttpResponseRedirect(reverse(question_detail, args=(new_form.pk,)))
     else:
         form = QuestionForm()

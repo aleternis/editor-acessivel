@@ -1,14 +1,14 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-{{ question_progress }}
+<h3>{{questions_done}}/{{total_questions}} questões concluídas<h3>
 {% for question in questions %}
 <div class="post">
 	<h1><a href="{% url 'blog.views.question_detail' pk=question.pk %}">{{ question.id }}</a></h1>
-	<p>{{ question.text|safe }}</p>
-
-
-
+	<h4>{{ question.text|safe }}</h4>
 </div>
 {% endfor %}
+{% if questions_done < total_questions%}
+	<h2><a href="{% url 'blog.views.question_new' pk=exam_pk %}">Adicionar questão</a></h2>
+{% endif %}
 {% endblock content %}

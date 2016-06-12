@@ -1,0 +1,10 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	<h1>Escolha a prova para qual você deseja adicionar questões</h1>
+	{% for exam in exams %}
+	<li><a href="{% url 'blog.views.question_new' pk=exam.pk %}">{{ exam.title }}</a></li>
+	{% endfor %}
+
+{% endblock content %}

@@ -51,7 +51,7 @@
                 <li><a href="{% url 'exam_new' %}">Criar Prova</a></li>
                 {% endif %}
                 {% if perms.blog.add_question %}
-                <li><a href="{% url 'question_new' %}">Criar Questão</a></li>
+                <li><a href="{% url 'choose_exam' %}">Criar Questão</a></li>
                 {% endif %}
             </ul>
         </li>

@@ -31,7 +31,7 @@ class QuestionForm(forms.ModelForm):
 
 	class Meta:
 		model = Question
-		fields = ('exam', 'text')
+		fields = ('text',)
 
 class OptionForm(forms.ModelForm):
 
