@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^question/new/$', views.question_new, name='question_new'),
     url(r'^question/$', views.question_list, name='question_list'),
     url(r'^question/(?P<pk>[0-9]+)/$', views.question_detail),
+    url(r'^option/new/(?P<pk>[0-9]+)/$', views.option_new, name='option_new'),
     url(r'^exam/new/$', views.exam_new, name='exam_new'),
     url(r'^exam/(?P<pk>[0-9]+)/$', views.question_list),
     url(r'^examtemplate/new/$', views.exam_template_new, name='exam_template_new'),

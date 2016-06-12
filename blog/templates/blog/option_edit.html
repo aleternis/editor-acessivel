@@ -1,0 +1,138 @@
+{% extends 'blog/base.html' %}
+
+
+
+{% block content %}
+
+
+<form method="POST" class="post-form">{% csrf_token %}
+
+    {{ form.media }}
+    {{ form.as_p }}
+
+    <button type="submit" class="save btn btn-default">Salvar</button>
+</form>
+
+
+
+
+<script>
+
+/*$(document).ready(function() {
+  // executes when HTML-Document is loaded and DOM is ready
+  alert("document is ready");
+});*/
+
+$(window).load(function() {
+    $('body#tinymce', $('iframe#id_option_ifr').contents()).keyup( function(e) {
+        var error = false;
+        var pError = "";
+        var imgError = "";
+        var errorNmb = "";
+        var errorFormat = [];
+        var btn = document.getElementById("id_option_ifr");
+        var listP = btn.contentWindow.document.body.getElementsByTagName('p');
+        var listImg = btn.contentWindow.document.body.getElementsByTagName('img');
+        
+        //Testar tag p
+        for (i = 0; i < listP.length; i++) {
+            if(listP[i].innerHTML.split(" ").length> 10){
+                listP[i].style.color = "red";
+                errorFormat.push(i);
+                
+                error=true;
+
+            }else{
+              listP[i].style.color = "black";
+
+          }
+      }
+
+      pError = showErrorP(errorFormat)
+
+      //Testar tag img
+      errorFormat=[];
+      for (i = 0; i < listImg.length; i++) {
+        alt = listImg[i].getAttribute('alt');
+        if (alt === "") {
+            errorFormat.push(i);
+
+            listImg[i].style.border='2px solid red';
+            error = true;
+        }else{
+            listImg[i].style.border='none';
+        }
+    }
+    imgError = showErrorIMG(errorFormat)
+    //mostrar error e exibir pop up
+    if(error){
+        $('#id_option_tbl').popover({
+            title :"<h4>Elementos não conforme!</h4>",
+            content: "<lu>" +
+            pError+
+            imgError+
+            "</lu>",
+            container: "body",
+            html: true,
+            animation: false,
+        })
+        $('#id_option_tbl').data('bs.popover').options.content =
+        "<lu>" +
+        pError+
+        imgError+
+        "</lu>" ;
+
+        $('#id_option_tbl').popover('show')
+    }else{
+
+        $('#id_option_tbl').popover('hide')
+    }
+
+function showErrorP(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
+    }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
+        }else if(errorArray.length>1){
+
+            for (i = 0; i < errorArray.length; i++) {
+                if(i!=(errorArray.length-1)){
+                    eNumb = eNumb + (errorArray[i]+1) + ", ";
+                }else{
+                    eNumb = eNumb + (errorArray[i]+1);
+                }
+            }
+            return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
+    } 
+}
+
+function showErrorIMG(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
+    }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> A imagem" + eNumb + " não possui descrição</li>"
+        }else if(errorArray.length>1){
+
+            for (i = 0; i < errorArray.length; i++) {
+                if(i!=(errorArray.length-1)){
+                    eNumb = eNumb + (errorArray[i]+1) + ", ";
+                }else{
+                    eNumb = eNumb + (errorArray[i]+1);
+                }
+            }
+            return "<li> As imagens " + eNumb + " não possuem descrição</li>";
+    } 
+}
+});
+
+});
+
+
+</script>
+{% endblock %}

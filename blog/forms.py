@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Comment, Question, Exam, ExamTemplate
+from .models import Post, Comment, Question, Exam, ExamTemplate, Option
 
 
 class PostForm(forms.ModelForm):
@@ -31,4 +31,10 @@ class QuestionForm(forms.ModelForm):
 
 	class Meta:
 		model = Question
-		fields = ('exam', 'text', 'alternativeA', 'alternativeB', 'alternativeC', 'alternativeD', 'alternativeE')
+		fields = ('exam', 'text')
+
+class OptionForm(forms.ModelForm):
+
+    class Meta:
+        model = Option
+        fields = ('option',)

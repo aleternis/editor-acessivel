@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post, Comment, Question, Exam, ExamTemplate
+from .models import Post, Comment, Question, Exam, ExamTemplate, Option
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm
+from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm, OptionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
-
-
-
-
-
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -95,7 +92,22 @@ def comment_remove(request, pk):
 @permission_required('blog.question_detail',raise_exception=True)
 def question_detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
-    return render(request, 'blog/question_detail.html', {'question': question})
+    num_options = question.exam.template.questions
+    num_options_done = Option.objects.filter(question=pk).count()
+    if num_options_done > 0:
+        options = Option.objects.filter(question=pk)
+    num_options_todo = num_options - num_options_done
+    todo = []
+    done = []
+
+    for i in range(num_options_done):
+        done.append(chr(ord('a')+i))
+    
+    for i in range(num_options_todo):
+        todo.append(chr(ord('a')+i+num_options_done))
+
+    return render(request, 'blog/question_detail.html', {'question': question, 'todo': todo,
+     'options': options, 'done':done})
 
 @permission_required('blog.question_list',raise_exception=True)
 def question_list(request, pk):
@@ -107,11 +119,24 @@ def question_new(request):
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('blog.views.question_new')
+            new_form = form.save()
+            return HttpResponseRedirect(reverse(question_detail, args=(new_form.pk,)))
     else:
         form = QuestionForm()
     return render(request, 'blog/question_edit.html', {'form': form})
+
+@permission_required('blog.add_question',raise_exception=True)
+def option_new(request, pk):
+    if request.method == "POST":
+        form = OptionForm(request.POST)
+        if form.is_valid():
+            option = form.save(commit=False)
+            option.question = get_object_or_404(Question, pk=pk)
+            option.save()
+            return HttpResponseRedirect(reverse(question_detail, args=(pk,)))
+    else:
+        form = OptionForm()
+    return render(request, 'blog/option_edit.html', {'form': form})
 
 @permission_required('blog.add_exam',raise_exception=True)
 def exam_new(request):

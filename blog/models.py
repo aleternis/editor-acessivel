@@ -67,15 +67,14 @@ class Exam(models.Model):
     def __str__(self):
         return self.title
 
+class Option(models.Model):
+    question = models.ForeignKey('blog.Question')
+    option = HTMLField()
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)
     text = HTMLField()
-    alternativeA = HTMLField()
-    alternativeB = HTMLField()
-    alternativeC = HTMLField()
-    alternativeD = HTMLField()
-    alternativeE = HTMLField()
+    
     class Meta:
         permissions = (
             ("question_list", "Can see question list"),

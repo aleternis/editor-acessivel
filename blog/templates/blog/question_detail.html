@@ -3,14 +3,14 @@
 {% block content %}
 
 
-
-
 <h1>{{ question.text | safe }}</h1>
-<h3>{{ question.alternativeA | safe }}</h3>
-<h3>{{ question.alternativeB | safe }}</h3>
-<h3>{{ question.alternativeC | safe }}</h3>
-<h3>{{ question.alternativeD | safe }}</h3>
-<h3>{{ question.alternativeE | safe }}</h3>
+{% for option in options%}
+		<h3>{{option.option | safe}}</h3>
+{% endfor %}
+
+{% for new_option in todo %}
+	<h3>{{new_option}}<a href="{% url 'option_new' pk=question.pk %}">) Criar alternativa</a></h3>
+{% endfor %}
 
 
 
