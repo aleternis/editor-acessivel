@@ -112,7 +112,11 @@ def question_detail(request, pk):
 @permission_required('blog.question_list',raise_exception=True)
 def question_list(request, pk):
     questions = Question.objects.filter(exam=pk)
-    return render(request, 'blog/question_list.html', {'questions': questions})
+    exam = Exam.objects.get(pk=pk)
+    total_questions = exam.template.questions
+    questions_done = questions.count()
+    question_progress = '{0}/{1} questoes concluidas'.format(questions_done,total_questions)
+    return render(request, 'blog/question_list.html', {'questions': questions, 'question_progress':question_progress})
 
 @permission_required('blog.add_question',raise_exception=True)
 def question_new(request):
