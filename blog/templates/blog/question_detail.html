@@ -4,9 +4,11 @@
 
 
 <h1>{{ question.text | safe }}</h1>
-{% for d,option in options %}
-		<h3>{{d}}){{option.option | safe}}</h3>
-{% endfor %}
+{% if options%}
+	{% for d,option in options %}
+			<h3>{{d}}){{option.option | safe}}</h3>
+	{% endfor %}
+{% endif %}
 
 {% for new_option in todo %}
 	<h3>{{new_option}}<a href="{% url 'option_new' pk=question.pk %}">) Criar alternativa</a></h3>
