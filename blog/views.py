@@ -107,7 +107,7 @@ def question_detail(request, pk):
         todo.append(chr(ord('a')+i+num_options_done))
 
     return render(request, 'blog/question_detail.html', {'question': question, 'todo': todo,
-     'options': options, 'done':done})
+     'options': zip(done,options)})
 
 @permission_required('blog.question_list',raise_exception=True)
 def question_list(request, pk):

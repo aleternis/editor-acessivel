@@ -4,8 +4,8 @@
 
 
 <h1>{{ question.text | safe }}</h1>
-{% for option in options%}
-		<h3>{{option.option | safe}}</h3>
+{% for d,option in options %}
+		<h3>{{d}}){{option.option | safe}}</h3>
 {% endfor %}
 
 {% for new_option in todo %}
