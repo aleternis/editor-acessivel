@@ -24,8 +24,8 @@ urlpatterns = [
     url(r'^examtemplate/new/$', views.exam_template_new, name='exam_template_new'),
     url(r'^examtemplate/(?P<pk>[0-9]+)/$', views.exam_template_detail),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^exam/notfinished/', views.notfinisehd_exams, name='not_finished_exams'),
-    url(r'^exam/finished/', views.finisehd_exams, name='finished_exams'),
+    url(r'^exam/notfinished/', views.notfinished_exams, name='not_finished_exams'),
+    url(r'^exam/finished/', views.finished_exams, name='finished_exams'),
 
 
 ]
