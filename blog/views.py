@@ -125,7 +125,7 @@ def question_list(request, pk):
 
 @permission_required('blog.add_question',raise_exception=True)
 def choose_exam(request):
-    exams = Exam.objects.filter(author=request.user)
+    exams = exams_not_completed_byuser(request.user)
     return render(request, 'blog/choose_exam_list.html', {'exams': exams})
 
 @permission_required('blog.add_question',raise_exception=True)
@@ -195,23 +195,31 @@ def exam_template_detail(request, pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
 
-@login_required
+@permission_required('blog.add_question',raise_exception=True)
 def notfinished_exams(request):
-    exams = Exam.objects.filter(author=request.user)
+    exams = exams_not_completed_byuser(request.user)
+    return render(request, 'blog/exam_list.html', {'exams': exams})  
+
+@login_required
+def finished_exams (request): 
+    exams = exams_completed_byuser(request.user)
+    return render(request, 'blog/exam_list.html', {'exams': exams}) 
+
+def exams_not_completed_byuser(author):
+    exams = Exam.objects.filter(author=author)
     exams_not_finished = []
     for exam in exams:
         if not is_exam_completed(exam):
             exams_not_finished.append(exam)
-    return render(request, 'blog/exam_list.html', {'exams': exams_not_finished})  
+    return exams_not_finished
 
-@login_required
-def finished_exams (request): 
-    exams = Exam.objects.filter(author=request.user)
+def exams_completed_byuser(author):
+    exams = Exam.objects.filter(author=author)
     exams_finished = []
     for exam in exams:
         if is_exam_completed(exam):
             exams_finished.append(exam)
-    return render(request, 'blog/exam_list.html', {'exams': exams_finished}) 
+    return exams_finished
 
 def is_exam_completed(Exam):
     total_questions = Exam.template.questions
