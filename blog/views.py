@@ -201,7 +201,6 @@ def notfinished_exams(request):
     exams_not_finished = []
     for exam in exams:
         if not is_exam_completed(exam):
-            print "here"
             exams_not_finished.append(exam)
     return render(request, 'blog/exam_list.html', {'exams': exams_not_finished})  
 
@@ -217,13 +216,9 @@ def finished_exams (request):
 def is_exam_completed(Exam):
     total_questions = Exam.template.questions
     questions_done = Question.objects.filter(exam=Exam.id).count()
-    print "total questions"+str(total_questions)
-    print questions_done
     if total_questions==questions_done:
-        print True
         return True
     else:
-        print False
         return False
 
 
