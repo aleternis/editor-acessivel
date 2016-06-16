@@ -92,7 +92,7 @@ def comment_remove(request, pk):
 @permission_required('blog.question_detail',raise_exception=True)
 def question_detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
-    num_options = question.exam.template.questions
+    num_options = question.exam.template.answers
     exam_pk = question.exam.id
     num_options_done = Option.objects.filter(question=pk).count()
     options = None
@@ -164,7 +164,7 @@ def exam_new(request):
             exam.author = request.user
            # post.published_date = timezone.now()
             exam.save()
-            return redirect('blog.views.exam_new')
+            return HttpResponseRedirect(reverse(question_list, args=(exam.pk,)))
     else:
         form = ExamForm()
     return render(request, 'blog/exam_edit.html', {'form': form})
@@ -184,8 +184,8 @@ def exam_template_new(request):
     if request.method == "POST":
         form = ExamTemplateForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('blog.views.exam_template_new')
+            new_form = form.save()
+            return HttpResponseRedirect(reverse(exam_template_detail, args=(new_form.pk,)))
     else:
         form = ExamTemplateForm()
     return render(request, 'blog/exam_template_edit.html', {'form': form})
