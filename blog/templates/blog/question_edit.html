@@ -105,13 +105,15 @@ $(window).load(function() {
         pError+
         imgError+
         tblError+
-        "</lu>" ;
+        "</lu>"+
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Como cirrigir?</button>' ;
 
         $('#id_text_tbl').popover('show')
     }else{
 
         $('#id_text_tbl').popover('hide')
     }
+
 // tag p
 function showErrorP(errorArray){
     var eNumb ="";
@@ -182,5 +184,45 @@ function showErrorTBL(errorArray){
 });
 
 
+
+
+</script>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Como melhorar a usabilidade!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Dicas de como melhorar a usabilidade</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+  <script>
+function mostrarDica() {
+        $('#id_text_tbl').popover('hide')
+}
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal("show");
+    });
+        $("#myModal").on('hidden.bs.modal', function () {
+            $('#id_text_tbl').popover('show')
+    });
+});
 </script>
 {% endblock %}
