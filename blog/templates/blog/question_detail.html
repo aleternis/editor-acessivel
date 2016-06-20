@@ -6,7 +6,7 @@
 <h1>{{ question.text | safe }}  <a class="btn btn-default" href="{% url 'question_edit' pk=question.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </h1>
 {% if options%}
 	{% for d,option in options %}
-			<h3>{{d}}){{option.option | safe}}</h3>
+			<h3>{{d}}){{option.option | safe}}  <a class="btn btn-default" href="{% url 'option_edit' pk=option.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h3>
 	{% endfor %}
 {% endif %}
 

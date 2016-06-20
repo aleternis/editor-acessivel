@@ -25,6 +25,7 @@
 
 							{% for exam in exams %}
 							<li><a href="{% url 'blog.views.question_list' pk=exam.pk %}">{{ exam.title }}</a></li>
+							<a class="btn btn-default" href="{% url 'exam_edit' pk=exam.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 							{% endfor %}
 
 						</ul>

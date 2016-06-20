@@ -169,6 +169,21 @@ def option_new(request, pk):
         form = OptionForm()
     return render(request, 'blog/option_edit.html', {'form': form})
 
+@permission_required('blog.add_question',raise_exception=True)
+def option_edit(request, pk):
+    option = get_object_or_404(Option, pk=pk)
+    if request.method == "POST":
+        form = OptionForm(request.POST, instance=option)
+        if form.is_valid():
+            option = form.save(commit=False)
+            #option.question = get_object_or_404(Question, pk=pk)
+            option.save()
+            question_pk = option.question.id
+            return HttpResponseRedirect(reverse(question_detail, args=(question_pk,)))
+    else:
+        form = OptionForm(instance=option)
+    return render(request, 'blog/option_edit.html', {'form': form})
+
 @permission_required('blog.add_exam',raise_exception=True)
 def exam_new(request):
     if request.method == "POST":
@@ -184,6 +199,21 @@ def exam_new(request):
         form = ExamForm()
     return render(request, 'blog/exam_edit.html', {'form': form})
 
+
+def exam_edit(request,pk):
+    exam = get_object_or_404(Exam, pk=pk)
+    if request.method == "POST":
+        form = ExamForm(request.POST, instance = exam)
+        if form.is_valid():
+
+            exam = form.save(commit=False)
+            exam.author = request.user
+           # post.published_date = timezone.now()
+            exam.save()
+            return HttpResponseRedirect(reverse(question_list, args=(exam.pk,)))
+    else:
+        form = ExamForm(instance=exam)
+    return render(request, 'blog/exam_edit.html', {'form': form})
 
 @permission_required('blog.exam_detail',raise_exception=True)
 def exam_detail(request, pk):
