@@ -17,6 +17,7 @@ urlpatterns = [
 	url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
     url(r'^question/new/(?P<pk>[0-9]+)/$', views.question_new, name='question_new'),
     url(r'^question/(?P<pk>[0-9]+)/$', views.question_detail),
+    url(r'^question/(?P<pk>[0-9]+)/edit/$', views.question_edit, name='question_edit'),
     url(r'^option/new/(?P<pk>[0-9]+)/$', views.option_new, name='option_new'),
     url(r'^exam/new/$', views.exam_new, name='exam_new'),
     url(r'^exam/choose/$', views.choose_exam, name='choose_exam'),

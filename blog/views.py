@@ -142,6 +142,21 @@ def question_new(request, pk):
     return render(request, 'blog/question_edit.html', {'form': form})
 
 @permission_required('blog.add_question',raise_exception=True)
+
+def question_edit(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            question = form.save(commit=False)
+            #new_form.exam = get_object_or_404(Exam, pk=pk)
+            question.save()
+            return HttpResponseRedirect(reverse(question_detail, args=(question.pk,)))
+    else:
+        form = QuestionForm(instance=question)
+    return render(request, 'blog/question_edit.html', {'form': form})
+
+@permission_required('blog.add_question',raise_exception=True)
 def option_new(request, pk):
     if request.method == "POST":
         form = OptionForm(request.POST)
@@ -196,7 +211,7 @@ def exam_template_new(request):
 def exam_template_edit(request,pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     if request.method == "POST":
-        form = ExamTemplateForm(request.POST)
+        form = ExamTemplateForm(request.POST, instance=exam_template)
         if form.is_valid():
             exam_template = form.save()
             return HttpResponseRedirect(reverse(exam_template_detail, args=(exam_template.pk,)))
