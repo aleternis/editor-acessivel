@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^question/(?P<pk>[0-9]+)/$', views.question_detail),
     url(r'^question/(?P<pk>[0-9]+)/edit/$', views.question_edit, name='question_edit'),
     url(r'^option/new/(?P<pk>[0-9]+)/$', views.option_new, name='option_new'),
-     url(r'^option/(?P<pk>[0-9]+)/edit/$', views.option_edit, name='option_edit'),
+    url(r'^option/(?P<pk>[0-9]+)/edit/$', views.option_edit, name='option_edit'),
     url(r'^exam/new/$', views.exam_new, name='exam_new'),
     url(r'^exam/choose/$', views.choose_exam, name='choose_exam'),
     url(r'^exam/(?P<pk>[0-9]+)/$', views.question_list, name='question_list'),
@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^exam/notfinished/', views.notfinished_exams, name='not_finished_exams'),
     url(r'^exam/finished/', views.finished_exams, name='finished_exams'),
-
+    url(r'^texto-alternativo/', views.show_error, name='show_error'),
 
 ]

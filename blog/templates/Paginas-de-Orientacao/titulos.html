@@ -1,0 +1,164 @@
+<!DOCTYPE html>			
+<html lang="pt-br">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<title>Sobre hierarquia de títulos</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+		
+</head>	
+<body>
+<section>
+	<article>
+		<h1>Sobre hierarquia de títulos</h1>
+		
+		<p class="intro-text">
+		
+		<p>Os níveis títulos devem ser utilizados de forma hierárquica, pois organizam a ordem de importância e subordinação dos conteúdos, facilitando a leitura e compreensão. Além disso, muitos leitores de tela utilizam a hierarquia de títulos como uma forma de navegação na página, pulando de um para outro, agilizando, assim, a navegação.</p>
+		
+		<p>Em linguagem HTML existem seis níveis de títulos, sendo o "Título 1" o mais alto, ou seja, deverá corresponder ao conteúdo principal da página e os níveis de "Título 2" ao "Título 6" que poderão ser utilizados sem excesso e com lógica textual, obedecendo a hierarquia.</p>
+		
+		<section class="exemplo">
+			<div class="exemplo-1">
+				<p class="pexemplo">Aplicação correta</p>
+				<h1 title="Título 1" id="a01">Cardápio do dia <span>(Título 1)</span></h1>		  
+				<h2>Entrada <span>(Título 2)</span></h2>   
+				<h3>Opção 1 <span>(Título 3)</span></h3>  
+				<p>Caldo Verde</p> 
+				<h3>Opção 2 <span>(Título 3)</span></h3>  
+				<p>Salada Caesar</p> 
+				<h3>Opção 3 <span>(Título 3)</span></h3>  
+				<p>Creme de batata baroa com calabresa</p>
+				
+				<h2>Prato Principal <span>(Título 2)</span></h2>   
+				<h3>Opção 1 <span>(Título 3)</span></h3>  
+				<h4>Carnes <span>(Título 4)</span></h4>
+				<ul>
+					<li>Filé mignon ao molho madeira</li> 
+					<li>Frango grelhado</li>
+					<li>Picanha grelhada</li>
+				</ul>
+				<h4>Acompanhamentos <span>(Título 4)</span></h4>
+				<ul>
+					<li>Arroz com brócolis</li> 
+					<li>Arroz branco </li>
+					<li>Guarnição à francesa</li>
+					<li>Batata frita</li>
+					<li>Bolinho de bacalhau</li>
+					<li>Farofa</li>
+					<li>Aipim</li>
+					<li>Salada verde</li>
+				</ul>
+				<h3>Opção 2 <span>(Título 3)</span></h3>  
+				<h4>Carnes <span>(Título 4)</span></h4>
+				<ul>
+					<li>Bacalhau à Gomes Sá</li>
+					<li>Camarão na moranga</li>
+					<li>Carne de Soja</li>
+					<li>Filé de linguado</li>
+				</ul>
+				<h4>Acompanhamentos <span>(Título 4)</span></h4>
+				<ul>
+					<li>Arroz com castanhas</li> 
+					<li>Arroz branco </li>
+					<li>Salada verde com tomate seco</li>
+					<li>Purê de batata baroa</li>
+					<li>Beringela grelhada</li>
+					<li>Legumes no vapor</li>
+					<li>Quiche de ricota</li>
+				</ul>
+				<h2>Sobremesas <span>(Título 2)</span></h2>
+				<h3>Opção 1 <span>(Título 3)</span></h3>  
+				<ul>
+					<li>Salada de frutas</li>
+					<li>Mousse de Maracujá</li>
+					<li>Pudim de leite</li>
+				</ul>
+				<h3>Opção 2 <span>(Título 3)</span></h3>  
+				<ul>
+					<li>Frutas da época</li>
+					<li>Torta de limão</li>
+					<li>Torta de Nutella</li>
+				</ul>	
+			</div>
+			
+			<div class="exemplo-2">
+				<p class="pexemplo">Aplicação incorreta</p>
+				<h1 title="Título 1" id="a01">Cardápio do dia <span>(Título 1)</span></h1>		  
+				<h3>Entrada <span>(Título 3)</span></h3>   
+				<h4>Opção 1 <span>(Título 4)</span></h4>  
+				<p>Caldo Verde</p> 
+				<h4>Opção 2 <span>(Título 4)</span></h4>  
+				<p>Salada Caesar</p> 
+				<h4>Opção 3 <span>(Título 4)</span></h4>  
+				<p>Creme de batata baroa com calabresa</p>
+				
+				<h2>Prato Principal <span>(Título 2)</span></h2>   
+				<h4>Opção 1 <span>(Título 4)</span></h4>  
+				<h5>Carnes <span>(Título 5)</span></h5>
+				<ul>
+					<li>Filé mignon ao molho madeira</li> 
+					<li>Frango grelhado</li>
+					<li>Picanha grelhada</li>
+				</ul>
+				<h5>Acompanhamentos <span>(Título 5)</span></h5>
+				<ul>
+					<li>Arroz com brócolis</li> 
+					<li>Arroz branco </li>
+					<li>Guarnição à francesa</li>
+					<li>Batata frita</li>
+					<li>Bolinho de bacalhau</li>
+					<li>Farofa</li>
+					<li>Aipim</li>
+					<li>Salada verde</li>
+				</ul>
+				<h4>Opção 2 <span>(Título 4)</span></h4>  
+				<h5>Carnes <span>(Título 5)</span></h5>
+				<ul>
+					<li>Bacalhau à Gomes Sá</li>
+					<li>Camarão na moranga</li>
+					<li>Carne de Soja</li>
+					<li>Filé de linguado</li>
+				</ul>
+				<h5>Acompanhamentos <span>(Título 5)</span></h5>
+				<ul>
+					<li>Arroz com castanhas</li> 
+					<li>Arroz branco </li>
+					<li>Salada verde com tomate seco</li>
+					<li>Purê de batata baroa</li>
+					<li>Beringela grelhada</li>
+					<li>Legumes no vapor</li>
+					<li>Quiche de ricota</li>
+				</ul>
+				<h2>Sobremesas <span>(Título 2)</span></h2>
+				<h4>Opção 1 <span>(Título 4)</span></h4>  
+				<ul>
+					<li>Salada de frutas</li>
+					<li>Mousse de Maracujá</li>
+					<li>Pudim de leite</li>
+				</ul>
+				<h4>Opção 2 <span>(Título 4)</span></h4>  
+				<ul>
+					<li>Frutas da época</li>
+					<li>Torta de limão</li>
+					<li>Torta de Nutella</li>
+				</ul>		
+			
+			</div>
+			
+			
+			</div>
+			
+			
+		
+		</section>
+		
+	</article>
+</section>
+
+
+
+
+</body>

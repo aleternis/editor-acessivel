@@ -1,0 +1,332 @@
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #000;
+}
+section
+{
+	margin: 0 auto;
+	width: 98%;
+	margin: 0 1%;
+	background-color: white;
+}
+h1
+{
+	font-size: 20px;
+	padding: .5% 0;
+	text-transform: uppercase;
+	color: #A10204;
+	border-bottom: 2px solid #A10204;
+	margin: 0 0 2% 0;
+}
+nav
+{
+	margin: 0; 
+	padding: 0;
+}
+nav.voltar a
+{
+	display: block;
+	background: url(voltar.png) top left no-repeat;
+	height: 49px;
+	padding-left: 32px;
+	padding-top: 15px;
+
+	color: #000;
+}
+nav.voltar a:hover
+{
+	background: url(voltar_over.png) top left no-repeat;
+	color: #A10204;
+}
+article
+{
+	width: 100%;
+	height: auto;
+	padding-bottom: .5%;
+}
+p.intro-text
+{
+	clear: both;
+	font-size: 14px;
+}
+
+div.item
+{
+	clear: both;
+	background-color: #fff;
+	
+}
+
+figure.exemplo
+{
+	background-color: #eee;
+    border: 1px solid #888888;
+	text-align: center;
+	padding: 1% 0;
+	margin: 0;
+	float:left;
+	width: 30%;
+}
+
+
+figure.exemplo-branco
+{
+	background-color: #fff;
+    border: none;
+	text-align: center;
+	padding: 1% 0;
+	margin: 0;
+	float:left;
+	width: 30%;
+}
+figure.exemplo-maior
+{
+	background-color: #eee;
+    border: 1px solid #888888;
+	text-align: center;
+	padding: 1% 0;
+	margin: 0;
+	float:left;
+	width: 50%;
+}
+
+
+figure.exemplo-full
+{
+	background-color: #eee;
+    border: 1px solid #888888;
+	text-align: center;
+	padding: 1% 0;
+	margin: 0;
+	width: 70%;
+	margin: 0 15%;
+}
+
+figure.exemplo-cabecalho
+{
+	background-color: #eee;
+    border: 1px solid #888888;
+	text-align: center;
+	width: 400px;
+	padding: 1% 0;
+	margin: 0;
+}
+figure.grafico
+{
+	width: 40%;
+	margin: 0 30%;
+}
+figure.exemplo-decorativo
+{
+	text-align: center;
+	padding: 1% 0;
+	margin: 0;
+	width: 100%;
+}
+figure.exemplo img, figure.exemplo-full img
+{
+	width: 90%;
+}
+figure.exemplo-maior img
+{
+	width: 95%;
+}
+
+figure.thumb
+{
+	background-color: #fff;
+    border: none;
+	float: left;
+	width: 110px;
+	margin: 0% 2% 2% 2%;
+	text-align: center;
+	padding: 1% 0;
+}
+	figure.thumb img
+	{
+		border: 2px solid #ccc;
+		border-radius: 1em;
+		
+	}
+	figure.thumb img:hover
+	{
+		
+		border: 2px solid #A10204;
+	}
+	figure.thumb figcaption
+	{
+		font-size: 14px;
+	}
+	figure.thumb a
+	{
+		text-decoration: none;
+		color: #000;
+	}
+	figure.thumb a:hover
+	{
+		text-decoration: underline;
+		color: #A10204;
+	}
+
+div.texto
+{
+	background-color: #fff;
+	float: left;
+	width: 63%;
+	padding-left: 2%;
+	margin: 0;
+}
+
+div.texto-menor
+{
+	background-color: #fff;
+	float: left;
+	width: 43%;
+	padding-left: 2%;
+	margin: 0;
+}
+
+}
+p, a, a:visited
+{
+	font-size: 14px;
+	padding: 2% 1%;
+	color: #000;
+}
+a:hover
+{
+	color: #A10204;
+}
+
+ol
+{
+	margin: 3%;
+}
+ul, ol
+{
+	font-size: 14px;
+	list-style-position: inside;
+}
+
+figcaption
+{
+	font-size: 12px;
+	padding: 1%;
+}
+p.texto-alternativo
+{
+	margin-top: 2%;
+	clear: both;
+	border: 2px solid #0055BB;
+	padding: 2% 1%;
+	background-color: #C3D2E5;
+}
+p.obs
+{
+	clear: both;
+	background-color: #fee;
+	border: 2px solid #A10204;
+	margin-top: 2%;
+	padding: 2% 1%;
+}
+div.obs
+{
+	clear: both;
+	background-color: #fee;
+	border: 2px solid #A10204;
+	padding: .5% 1%;
+	font-size: 14px;
+}
+p.obs strong, div.obs p strong
+{
+	text-transform: uppercase;
+	color: #A10204;
+}
+div.obs p strong.min
+{
+	text-transform: none;
+}
+
+img
+{
+	padding: 1%;
+	height: auto;
+}
+
+ol a
+{
+	padding: .5%;
+}
+.negrito
+{
+	font-weight: bold;
+}
+blockquote
+{
+	font-style: italic;
+}
+section.exemplo
+{
+
+	width: 100%;
+	margin: 0%;
+}
+
+section.exemplo .exemplo-1, section.exemplo .exemplo-2
+{
+	width: 46%;
+	margin: 0 1%;
+	padding: 2% 1%;
+	float: left;
+	background-color: #eee;	
+	border-radius: 1em;
+}
+
+
+section.exemplo h1
+{
+	font-size: 30px;
+	padding: .5% 0;
+	text-transform: none;
+	color: #000;
+	font-weight: bold;
+	border: none;
+	margin: 0;
+}
+p.pexemplo
+{
+	color: #A10204;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 0;
+	border-bottom: 2px solid #A10204;
+	
+}
+
+.ttabela
+{
+	color: #A10204;	
+	font-size: 18px;
+}
+table
+{
+	background-color: #eee;
+	border-collapse: collapse;
+	border: 2px solid #0055BB;
+}
+table td,table th
+{
+	border: 1px solid #ccc;
+	padding: 1%;
+}
+table th
+{
+	background-color: #0055BB;
+	color: #eee;
+}
+table caption
+{
+	font-weight: bold;
+	color: #0055BB;
+	margin-bottom: 1%;
+}
