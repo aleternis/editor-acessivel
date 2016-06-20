@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^exam/(?P<pk>[0-9]+)/$', views.question_list, name='question_list'),
     url(r'^examtemplate/new/$', views.exam_template_new, name='exam_template_new'),
     url(r'^examtemplate/(?P<pk>[0-9]+)/$', views.exam_template_detail),
+    url(r'^examtemplate/(?P<pk>[0-9]+)/edit/$', views.exam_template_edit, name='exam_template_edit'),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^exam/notfinished/', views.notfinished_exams, name='not_finished_exams'),
     url(r'^exam/finished/', views.finished_exams, name='finished_exams'),

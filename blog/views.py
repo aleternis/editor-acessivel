@@ -169,6 +169,7 @@ def exam_new(request):
         form = ExamForm()
     return render(request, 'blog/exam_edit.html', {'form': form})
 
+
 @permission_required('blog.exam_detail',raise_exception=True)
 def exam_detail(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
@@ -188,6 +189,19 @@ def exam_template_new(request):
             return HttpResponseRedirect(reverse(exam_template_detail, args=(new_form.pk,)))
     else:
         form = ExamTemplateForm()
+    return render(request, 'blog/exam_template_edit.html', {'form': form})
+
+
+@permission_required('blog.add_examtemplate',raise_exception=True)
+def exam_template_edit(request,pk):
+    exam_template = get_object_or_404(ExamTemplate, pk=pk)
+    if request.method == "POST":
+        form = ExamTemplateForm(request.POST)
+        if form.is_valid():
+            exam_template = form.save()
+            return HttpResponseRedirect(reverse(exam_template_detail, args=(exam_template.pk,)))
+    else:
+        form = ExamTemplateForm(instance=exam_template)
     return render(request, 'blog/exam_template_edit.html', {'form': form})
 
 @permission_required('blog.exam_template_detail',raise_exception=True)
