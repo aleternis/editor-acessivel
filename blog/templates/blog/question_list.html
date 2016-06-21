@@ -17,11 +17,11 @@
 	<h3>{{questions_done}}/{{total_questions}} questões concluídas<h3>
 		
 		{% for question in questions %}
-		<div class="col-sm-6 col-md-4">
+		<div class="col-md-3 col-sm-4">
 			<div class="thumbnail">
 				<div class="caption">
 					<h3>Questão: {{ question.id }}</a></h3>
-					<h4>{{ question.text|safe|truncatewords:"10"|linebreaks }}</h4>
+					<h4>{{ question.text|safe|truncatewords:"2"|linebreaks }}</h4>
 					<hr>
 					<p>Alternativa A</p>
 					<h5>Alternativa B</h5>
@@ -53,7 +53,11 @@
 		<span class="glyphicon glyphicon-sort"></span> Ordenar questão </a>
 
 
-<!-- Criar nova pagina para reordenar questoes-->
+<!-- Criar nova pagina para reordenar questoes, nao colocar na base pq vai bugar outras cosas-->
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://necolas.github.com/normalize.css/2.0.1/normalize.css"> 
+
 		<script type="text/javascript">
 			$(function() {
 				$( "#sortable" ).sortable({ 

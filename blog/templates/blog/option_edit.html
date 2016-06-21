@@ -4,15 +4,16 @@
 
 {% block content %}
 
+<div class=" col-md-9">
 
-<form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="post-form">{% csrf_token %}
 
-    {{ form.media }}
-    {{ form.as_p }}
+        {{ form.media }}
+        {{ form.as_p }}
 
-    <button type="submit" class="save btn btn-default">Salvar</button>
-</form>
-
+        <button type="submit" class="save btn btn-default">Salvar</button>
+    </form>
+</div>
 
 
 
@@ -88,14 +89,14 @@ $(window).load(function() {
         $('#id_option_tbl').popover('hide')
     }
 
-function showErrorP(errorArray){
-    var eNumb ="";
-    if(errorArray.length==0){
-        return "";
-    }
-    if(errorArray.length==1){
-        eNumb = errorArray[0]+1;
-        return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
+    function showErrorP(errorArray){
+        var eNumb ="";
+        if(errorArray.length==0){
+            return "";
+        }
+        if(errorArray.length==1){
+            eNumb = errorArray[0]+1;
+            return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
         }else if(errorArray.length>1){
 
             for (i = 0; i < errorArray.length; i++) {
@@ -106,17 +107,17 @@ function showErrorP(errorArray){
                 }
             }
             return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
-    } 
-}
-
-function showErrorIMG(errorArray){
-    var eNumb ="";
-    if(errorArray.length==0){
-        return "";
+        } 
     }
-    if(errorArray.length==1){
-        eNumb = errorArray[0]+1;
-        return  "<li> A imagem" + eNumb + " não possui descrição</li>"
+
+    function showErrorIMG(errorArray){
+        var eNumb ="";
+        if(errorArray.length==0){
+            return "";
+        }
+        if(errorArray.length==1){
+            eNumb = errorArray[0]+1;
+            return  "<li> A imagem" + eNumb + " não possui descrição</li>"
         }else if(errorArray.length>1){
 
             for (i = 0; i < errorArray.length; i++) {
@@ -127,8 +128,8 @@ function showErrorIMG(errorArray){
                 }
             }
             return "<li> As imagens " + eNumb + " não possuem descrição</li>";
-    } 
-}
+        } 
+    }
 });
 
 });
