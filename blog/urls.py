@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from . import views
-
+from django.views.generic import TemplateView
 
 
 
@@ -30,6 +30,17 @@ urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^exam/notfinished/', views.notfinished_exams, name='not_finished_exams'),
     url(r'^exam/finished/', views.finished_exams, name='finished_exams'),
-    url(r'^texto-alternativo/', views.show_error, name='show_error'),
+    url(r'^menuInicial/', TemplateView.as_view(template_name="Paginas-de-Orientacao/menuInicial.html"), name='menuInicial'),    
+    url(r'^texto-alternativo/', TemplateView.as_view(template_name="Paginas-de-Orientacao/texto-alternativo.html"), name='show_error'),
+    url(r'^imagem1/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo1.html"), name='show_error_img_1'),
+    url(r'^imagem2/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo2.html"), name='show_error_img_2'),
+    url(r'^imagem3/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo3.html"), name='show_error_img_3'),
+    url(r'^imagem4/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo4.html"), name='show_error_img_4'),
+    url(r'^imagem5/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo5.html"), name='show_error_img_5'),
+    url(r'^imagem6/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo6.html"), name='show_error_img_6'),
+    url(r'^imagem7/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo7.html"), name='show_error_img_7'),
+    url(r'^imagem8/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo8.html"), name='show_error_img_8'),
+    url(r'^tabela/', TemplateView.as_view(template_name="Paginas-de-Orientacao/tabela.html"), name='show_error_tabela'),
+    url(r'^titulo/', TemplateView.as_view(template_name="Paginas-de-Orientacao/titulos.html"), name='show_error_titulo'),
 
 ]

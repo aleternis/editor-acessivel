@@ -1,24 +1,18 @@
-<!DOCTYPE html>			
-<html lang="pt-br">
+{% extends 'Paginas-de-Orientacao/ta-template.html' %}
 
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-	<title>Exemplos de texto alternativo</title>
-</head>	
-<body>
-<section>
-	<nav class="voltar">
-		<a href="texto-alternativo.html">Voltar</a>
-	</nav>
-	<article>
-		
-		<h1>Exemplo 3: Figura abstrata</h1>
+{% load staticfiles%}
+
+
+
+{% block content %}
+
+
+<h1>Exemplo 3: Figura abstrata</h1>
 
 		
 		<div class="item">
 			<figure class="exemplo ex1">
-				<img src="img/tarsila.png" alt="Quadro Estrada de Ferro Central do Brasil">		
+				<img src="{% static 'img/tarsila.png' %}" alt="Quadro Estrada de Ferro Central do Brasil">		
 			</figure>
 			<div class="texto">
 				<p>Na pintura Estrada de Ferro Central do Brasil, Tarsila do Amaral mostra o contraste das paisagens rurais e estradas de ferro da São Paulo industrial. A artista mistura, na mesma tela, a herança dos cenários abertos do campo e o as cidades moderna. A pintura demonstra que a cor é um dos elementos mais valorizados por Tarsila do Amaral. A artista sempre procurou a cor verdadeiramente brasileira ou caipira o rosa e azul claros, ou o verde e amarelo do nosso colorido tropical.</p>
@@ -26,11 +20,8 @@
 				
 			</div>
 		</div>
-		
-	</article>
-</section>
 
 
 
+{% endblock %}
 
-</body>

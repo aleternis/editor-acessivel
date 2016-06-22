@@ -287,7 +287,5 @@ def is_exam_completed(Exam):
         return True
     else:
         return False
-@login_required
-def show_error (request): 
-    return render(request, 'Paginas-de-Orientacao/texto-alternativo.html') 
+
 

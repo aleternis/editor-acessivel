@@ -26,14 +26,18 @@
 
 $(window).load(function() {
     $('body#tinymce', $('iframe#id_option_ifr').contents()).keyup( function(e) {
-        var error = false;
+       var error = false;
         var pError = "";
         var imgError = "";
+        var tblError = "";
+
         var errorNmb = "";
         var errorFormat = [];
         var btn = document.getElementById("id_option_ifr");
         var listP = btn.contentWindow.document.body.getElementsByTagName('p');
         var listImg = btn.contentWindow.document.body.getElementsByTagName('img');
+        var listTbl = btn.contentWindow.document.body.getElementsByTagName('table');
+
         
         //Testar tag p
         for (i = 0; i < listP.length; i++) {
@@ -65,13 +69,33 @@ $(window).load(function() {
         }
     }
     imgError = showErrorIMG(errorFormat)
+
+
+      //Testar tag tabela
+
+      errorFormat=[];
+      for (i = 0; i < listTbl.length; i++) {
+        captionList = listTbl[i].getElementsByTagName('caption');
+        if (captionList.length == 0 || captionList[0].innerHTML == '<br data-mce-bogus="1">') {
+            errorFormat.push(i);
+            listTbl[i].style.border='2px solid red';
+            error = true;
+        }else{
+
+            listTbl[i].style.border='none';
+        }
+    }
+    tblError = showErrorTBL(errorFormat)
+
     //mostrar error e exibir pop up
+
     if(error){
         $('#id_option_tbl').popover({
             title :"<h4>Elementos não conforme!</h4>",
             content: "<lu>" +
             pError+
             imgError+
+            tblError+
             "</lu>",
             container: "body",
             html: true,
@@ -81,7 +105,9 @@ $(window).load(function() {
         "<lu>" +
         pError+
         imgError+
-        "</lu>" ;
+        tblError+
+        "</lu>"+
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Como corrigir?</button>' ;
 
         $('#id_option_tbl').popover('show')
     }else{
@@ -89,51 +115,115 @@ $(window).load(function() {
         $('#id_option_tbl').popover('hide')
     }
 
-    function showErrorP(errorArray){
-        var eNumb ="";
-        if(errorArray.length==0){
-            return "";
-        }
-        if(errorArray.length==1){
-            eNumb = errorArray[0]+1;
-            return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
-        }else if(errorArray.length>1){
-
-            for (i = 0; i < errorArray.length; i++) {
-                if(i!=(errorArray.length-1)){
-                    eNumb = eNumb + (errorArray[i]+1) + ", ";
-                }else{
-                    eNumb = eNumb + (errorArray[i]+1);
-                }
-            }
-            return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
-        } 
+// tag p
+function showErrorP(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
     }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
+    }else if(errorArray.length>1){
 
-    function showErrorIMG(errorArray){
-        var eNumb ="";
-        if(errorArray.length==0){
-            return "";
-        }
-        if(errorArray.length==1){
-            eNumb = errorArray[0]+1;
-            return  "<li> A imagem" + eNumb + " não possui descrição</li>"
-        }else if(errorArray.length>1){
-
-            for (i = 0; i < errorArray.length; i++) {
-                if(i!=(errorArray.length-1)){
-                    eNumb = eNumb + (errorArray[i]+1) + ", ";
-                }else{
-                    eNumb = eNumb + (errorArray[i]+1);
-                }
+        for (i = 0; i < errorArray.length; i++) {
+            if(i!=(errorArray.length-1)){
+                eNumb = eNumb + (errorArray[i]+1) + ", ";
+            }else{
+                eNumb = eNumb + (errorArray[i]+1);
             }
-            return "<li> As imagens " + eNumb + " não possuem descrição</li>";
-        } 
+        }
+        return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
+    } 
+}
+// tag img
+function showErrorIMG(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
     }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> A imagem " + eNumb + " não possui descrição</li>"
+    }else if(errorArray.length>1){
+
+        for (i = 0; i < errorArray.length; i++) {
+            if(i!=(errorArray.length-1)){
+                eNumb = eNumb + (errorArray[i]+1) + ", ";
+            }else{
+                eNumb = eNumb + (errorArray[i]+1);
+            }
+        }
+        return "<li> As imagens " + eNumb + " não possuem descrição</li>";
+    } 
+}
+
+//tag table
+function showErrorTBL(errorArray){
+    var eNumb ="";
+    if(errorArray.length==0){
+        return "";
+    }
+    if(errorArray.length==1){
+        eNumb = errorArray[0]+1;
+        return  "<li> A tabela " + eNumb + " não possui descrição</li>"
+    }else if(errorArray.length>1){
+
+        for (i = 0; i < errorArray.length; i++) {
+            if(i!=(errorArray.length-1)){
+                eNumb = eNumb + (errorArray[i]+1) + ", ";
+            }else{
+                eNumb = eNumb + (errorArray[i]+1);
+            }
+        }
+        return "<li> As tabelas " + eNumb + " não possuem descrição</li>";
+    } 
+}
+
 });
 
 });
 
 
+
+
+</script>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Como melhorar a usabilidade!</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="{% url 'menuInicial' %} " width="100%" height="70%"></iframe>        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+    function mostrarDica() {
+        $('#id_option_tbl').popover('hide')
+    }
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal("show");
+        });
+        $("#myModal").on('hidden.bs.modal', function () {
+            $('#id_option_tbl').popover('show')
+        });
+    });
 </script>
 {% endblock %}

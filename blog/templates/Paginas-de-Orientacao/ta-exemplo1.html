@@ -1,24 +1,17 @@
-<!DOCTYPE html>			
-<html lang="pt-br">
+{% extends 'Paginas-de-Orientacao/ta-template.html' %}
 
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-	<title>Exemplos de texto alternativo</title>
-</head>	
-<body>
-<section>
-	<nav class="voltar">
-		<a href="texto-alternativo.html">Voltar</a>
-	</nav>
-	<article>
-		
-		<h1>Exemplo 1: Figura comum</h1>
+{% load staticfiles%}
+
+
+{% block content %}
+
+
+<h1>Exemplo 1: Figura comum</h1>
 
 		
 		<div class="item">
 			<figure class="exemplo ex1">
-				<img src="img/pinguins.jpg" alt="Cinco pinguins na praia">
+				<img src="{% static 'img/pinguins.jpg' %}" alt="Cinco pinguins na praia">
 				<figcaption>
 					Espécie pinguim-rei
 				</figcaption>			
@@ -28,11 +21,7 @@
 				<p class="texto-alternativo"><strong>Texto alternativo utilizado: </strong>Cinco pinguins na praia</p>
 			</div>
 		</div>
-		
-	</article>
-</section>
 
 
 
-
-</body>
+{% endblock %}

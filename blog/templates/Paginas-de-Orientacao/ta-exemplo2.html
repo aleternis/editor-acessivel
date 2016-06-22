@@ -1,24 +1,18 @@
-<!DOCTYPE html>			
-<html lang="pt-br">
+{% extends 'Paginas-de-Orientacao/ta-template.html' %}
 
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-	<title>Exemplos de texto alternativo</title>
-</head>	
-<body>
-<section>
-	<nav class="voltar">
-		<a href="texto-alternativo.html">Voltar</a>
-	</nav>
-	<article>
-		
-		<h1>Exemplo 2: Fotografia</h1>
+{% load staticfiles%}
+
+
+
+{% block content %}
+
+
+ <h1>Exemplo 2: Fotografia</h1>
 
 		
 		<div class="item">
 			<figure class="exemplo ex1">
-				<img src="img/santos-dummont.png" alt="Santos Dumont">		
+				<img src="{% static 'img/santos-dummont.png' %}" alt="Santos Dumont">		
 			</figure>
 			<div class="texto">
 				<p>Alberto Santos Dumont foi um aeronauta, esportista e inventor brasileiro. Herdeiro de uma família de cafeicultores prósperos na cidade de Ribeirão Preto, pôde se dedicar aos estudos da ciência e da mecânica vivendo em Paris. Ao contrário de outros aeronautas da época, Santos Dumont, deixava suas pesquisas como domínio público e sem registrar patentes.</p>
@@ -26,11 +20,7 @@
 				
 			</div>
 		</div>
-		
-	</article>
-</section>
 
 
 
-
-</body>
+{% endblock %}

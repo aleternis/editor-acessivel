@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" type="text/css" />
+    <title>Exemplos de texto alternativo</title>
+
+
+
+
+
+
+
+</head>
+<body>
+
+<section>
+    <nav class="voltar">
+        <a href="{% url 'show_error' %}">Voltar</a>
+    </nav>
+    <article>
+        
+        
+        
+
+
+   
+            {% block content %}
+            {% endblock %}
+
+                </article>
+</section>
+
+</body>
+</html>
