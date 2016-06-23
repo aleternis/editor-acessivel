@@ -3,24 +3,75 @@
 {% block content %}
 
 
-<h1>{{ question.text | safe }}  <a class="btn btn-default" href="{% url 'question_edit' pk=question.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </h1>
-{% if options%}
-	{% for d,option in options %}
-			<h3>{{d}}){{option.option | safe}}  <a class="btn btn-default" href="{% url 'option_edit' pk=option.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h3>
-	{% endfor %}
-{% endif %}
-
-{% for new_option in todo %}
-	<h3>{{new_option}}<a href="{% url 'option_new' pk=question.pk %}">) Criar alternativa</a></h3>
-{% endfor %}
-
-
-<h3><a href="{% url 'question_list' pk=exam_pk %}"> Voltar para lista de questões </a></h3>
 
 
 
 
+<div class="row">
+	<h3>Questão {{ question.id | safe }}<h3>
+		
+		<div class="col-md-8 col-sm-4">
+			<div class="thumbnail">
+				<div class="caption">
+					<p>{{ question.text | safe }}  <a class="btn btn-default" href="{% url 'question_edit' pk=question.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </p>
+
+					<hr>
+					{% if options%}
+					{% for d,option in options %}
+					<p>{{d}}:{{option.option | safe}}  <a class="btn btn-default" href="{% url 'option_edit' pk=option.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></p>
+										<hr>
+
+					{% endfor %}
+					{% endif %}
+
+					{% for new_option in todo %}
+					<p>{{new_option}}) <a href="{% url 'option_new' pk=question.pk %}">Criar alternativa</a></p>
+										<hr>
+
+					{% endfor %}
+
+				</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<a href="{% url 'question_list' pk=exam_pk %}" class="btn btn-default" role="button">
+	<span class="glyphicon glyphicon-chevron-left"></span> Voltar para lista de questões </a>
+
+	<a href="#" class="btn btn-default" role="button">
+		<span class="glyphicon glyphicon-sort"></span> Ordenar questão </a>
+
+		<!-- Criar nova pagina para reordenar questoes, nao colocar na base pq vai bugar outras cosas-->
+
+
+		<br/>
+		<br/>
+		<br/>
+
+
+		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://necolas.github.com/normalize.css/2.0.1/normalize.css"> 
+
+		<script type="text/javascript">
+			$(function() {
+				$( "#sortable" ).sortable({ 
+					placeholder: "ui-sortable-placeholder" 
+				});
+			});
+		</script>
+
+		<ul id="sortable">
+			<p>Testa o drag and drop das questoes</p>
+			{% for d,option in options %}
+			<li class="ui-state-default"> Alternativa: {{d}}) {{ option.option | safe|truncatewords:"2"|linebreaks }}</li>
+			{% endfor %}
+		</ul>
 
 
 
-{% endblock %}
+
+		{% endblock %}
