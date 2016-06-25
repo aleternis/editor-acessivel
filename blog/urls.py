@@ -42,5 +42,6 @@ urlpatterns = [
     url(r'^imagem8/', TemplateView.as_view(template_name="Paginas-de-Orientacao/ta-exemplo8.html"), name='show_error_img_8'),
     url(r'^tabela/', TemplateView.as_view(template_name="Paginas-de-Orientacao/tabela.html"), name='show_error_tabela'),
     url(r'^titulo/', TemplateView.as_view(template_name="Paginas-de-Orientacao/titulos.html"), name='show_error_titulo'),
+    url(r'^paragrafos/', TemplateView.as_view(template_name="Paginas-de-Orientacao/paragrafos.html"), name='show_error_paragrafo'),
 
 ]
