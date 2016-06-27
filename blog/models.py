@@ -95,12 +95,15 @@ class Question(models.Model):
     def verify_paragraph_length(self, text):
         sentences = text.split("</p>")
         alt = 'alt=""'
+        tabela_desc='<br data-mce-bogus="1">'
         output = []
         for index, i in enumerate(sentences, start=1):
-            if len(i.split()) > 10:
-                output.append('paragraph %d is too long' % index)
+       #     if len(i.split()) > 10:
+       #         output.append('paragraph %d is too long' % index)
             if alt in i:
-                output.append('imagem sem descricao')
+                output.append('Imagem sem descricao.')
+            if tabela_desc in i:
+                output.append('Tabela sem descricao.')    
         return output
 
 

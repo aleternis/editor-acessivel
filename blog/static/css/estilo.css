@@ -26,7 +26,7 @@ nav
 nav.voltar a
 {
 	display: block;
-	background: url(voltar.png) top left no-repeat;
+	background: url( {% static 'img/voltar.png' %} ) top left no-repeat;
 	height: 49px;
 	padding-left: 32px;
 	padding-top: 15px;
@@ -35,7 +35,7 @@ nav.voltar a
 }
 nav.voltar a:hover
 {
-	background: url(voltar_over.png) top left no-repeat;
+	background: url({% static 'img/voltar_over.png' %}) top left no-repeat;
 	color: #A10204;
 }
 article

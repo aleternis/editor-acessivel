@@ -41,7 +41,7 @@ $(window).load(function() {
         
         //Testar tag p
         for (i = 0; i < listP.length; i++) {
-            if(listP[i].innerHTML.split(" ").length> 10){
+            if(listP[i].innerHTML.split(" ").length> 300){
                 listP[i].style.color = "red";
                 errorFormat.push(i);
                 
@@ -123,7 +123,7 @@ function showErrorP(errorArray){
     }
     if(errorArray.length==1){
         eNumb = errorArray[0]+1;
-        return  "<li> Paragrafo " + eNumb + " possui mais de 10 palavras</li>"
+        return  "<li> Paragrafo " + eNumb + " está muito longo</li>"
     }else if(errorArray.length>1){
 
         for (i = 0; i < errorArray.length; i++) {
@@ -133,7 +133,7 @@ function showErrorP(errorArray){
                 eNumb = eNumb + (errorArray[i]+1);
             }
         }
-        return "<li> Paragrafos " + eNumb + " possuiem mais de 10 palavras</li>";
+        return "<li> Paragrafos " + eNumb + " estão muito longo</li>";
     } 
 }
 // tag img
