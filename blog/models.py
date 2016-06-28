@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
@@ -40,9 +41,9 @@ class Comment(models.Model):
         return self.text
 
 class ExamTemplate(models.Model):
-    name = models.CharField(max_length=300)
-    questions = models.IntegerField()
-    answers = models.IntegerField()
+    name = models.CharField(max_length=300, verbose_name=_('Titulo do novo template'))
+    questions = models.IntegerField(verbose_name=_('Quantidade de questoes'))
+    answers = models.IntegerField(verbose_name=_('Quantidade de alternativas'))
 
     class Meta:
         permissions = (
@@ -55,8 +56,8 @@ class ExamTemplate(models.Model):
 
 class Exam(models.Model):
     author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=300)
-    template = models.ForeignKey('blog.ExamTemplate')
+    title = models.CharField(max_length=300, verbose_name=_('Titulo da sua prova'))
+    template = models.ForeignKey('blog.ExamTemplate', verbose_name=_('Template da sua prova'))
 
     class Meta:
         permissions = (
@@ -69,12 +70,12 @@ class Exam(models.Model):
 
 class Option(models.Model):
     question = models.ForeignKey('blog.Question')
-    option = HTMLField()
+    option = HTMLField(verbose_name=_('Alternativa'))
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)
-    text = HTMLField()
-    
+    text = HTMLField(verbose_name=_('Titulo da sua questao'))
+
     class Meta:
         permissions = (
             ("question_list", "Can see question list"),
@@ -103,7 +104,7 @@ class Question(models.Model):
             if alt in i:
                 output.append('Imagem sem descricao.')
             if tabela_desc in i:
-                output.append('Tabela sem descricao.')    
+                output.append('Tabela sem descricao.')
         return output
 
 
