@@ -41,8 +41,8 @@ class Comment(models.Model):
         return self.text
 
 class ExamTemplate(models.Model):
-    name = models.CharField(max_length=300, verbose_name=_('Titulo do novo template'))
-    questions = models.IntegerField(verbose_name=_('Quantidade de questoes'))
+    name = models.CharField(max_length=300, verbose_name=_(u'Título do novo template'))
+    questions = models.IntegerField(verbose_name=_(u'Quantidade de questões'))
     answers = models.IntegerField(verbose_name=_('Quantidade de alternativas'))
 
     class Meta:
@@ -56,7 +56,7 @@ class ExamTemplate(models.Model):
 
 class Exam(models.Model):
     author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=300, verbose_name=_('Titulo da sua prova'))
+    title = models.CharField(max_length=300, verbose_name=_(u'Título da sua prova'))
     template = models.ForeignKey('blog.ExamTemplate', verbose_name=_('Template da sua prova'))
 
     class Meta:
@@ -74,7 +74,7 @@ class Option(models.Model):
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)
-    text = HTMLField(verbose_name=_('Titulo da sua questao'))
+    text = HTMLField(verbose_name=_(u'Título da sua questão'))
 
     class Meta:
         permissions = (
