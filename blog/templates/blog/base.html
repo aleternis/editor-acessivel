@@ -45,29 +45,41 @@
       <ul class="nav navbar-nav">
 
         {% if user.is_authenticated %}
-        {% if perms.blog.add_exam or perms.blog.add_exam%}
+        {% if perms.blog.add_examtemplate %}
+
         <li class="dropdown">
 
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nova<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Template<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 {% if perms.blog.add_exam %}
-                <li><a href="{% url 'exam_new' %}">Criar Prova</a></li>
-                {% endif %}
-                {% if perms.blog.add_question %}
-                <li><a href="{% url 'choose_exam' %}">Criar Questão</a></li>
+                <li><a href="{% url 'exam_template_new' %}">Criar Template</a></li>
                 {% endif %}
             </ul>
         </li>
         {% endif %}
+        {% if perms.blog.add_exam or perms.blog.add_exam%}
+
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Provas<span class="caret"></span></a>
             <ul class="dropdown-menu">
+                {% if perms.blog.add_exam %}
+                <li><a href="{% url 'exam_new' %}">Criar Prova</a></li>
+                {% endif %}
                 <li><a href="{% url 'not_finished_exams' %}">Provas Não Finalizadas</a></li>
                 <li><a href="{% url 'finished_exams' %}">Provas Finalizadas</a></li>
             </ul>
         </li>
-        {% if perms.blog.add_examtemplate %}
-        <li><a href="{% url 'exam_template_new' %}">Criar Template</a></li>
+        {% endif %}
+
+
+        {% if perms.blog.add_question %}
+        <li class="dropdown">
+
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questão<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'choose_exam' %}">Criar Questão</a></li>
+            </ul>
+        </li>
         {% endif %}
     </ul>
     <ul class="nav navbar-nav navbar-right">

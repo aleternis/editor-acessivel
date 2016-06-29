@@ -11,7 +11,7 @@
         {{ form.media }}
         {{ form.as_p }}
 
-        <button type="submit" class="save btn btn-default">Salvar</button>
+        <button type="submit"  onclick="return validaForm()"  class="save btn btn-default">Salvar</button>
     </form>
 
 </div>
@@ -86,9 +86,29 @@ $(window).load(function() {
         }
     }
     tblError = showErrorTBL(errorFormat)
+        
 
-    //mostrar error e exibir pop up
 
+
+
+
+// VALIDADOR DO FORM
+//    $(".post-form").submit(function() {
+//       if(error){
+//            alert('Paragrafo, ou imagem, ou tabela com erro');      
+//            return false;
+//        }
+//
+//    });
+
+
+
+
+
+
+
+
+        //mostrar error e exibir pop up
     if(error){
         $('#id_text_tbl').popover({
             title :"<h4>Elementos não conforme!</h4>",
@@ -106,8 +126,7 @@ $(window).load(function() {
         pError+
         imgError+
         tblError+
-        "</lu>"+
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Como corrigir?</button>' ;
+        "</lu>";
 
         $('#id_text_tbl').popover('show')
     }else{
@@ -123,7 +142,8 @@ function showErrorP(errorArray){
     }
     if(errorArray.length==1){
         eNumb = errorArray[0]+1;
-        return  "<li> Paragrafo " + eNumb + " está muito longo</li>"
+        return  "<li> Paragrafo " + eNumb + " está muito longo</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
     }else if(errorArray.length>1){
 
         for (i = 0; i < errorArray.length; i++) {
@@ -133,7 +153,8 @@ function showErrorP(errorArray){
                 eNumb = eNumb + (errorArray[i]+1);
             }
         }
-        return "<li> Paragrafos " + eNumb + " estão muito longo</li>";
+        return "<li> Paragrafos " + eNumb + " estão muito longo</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
     } 
 }
 // tag img
@@ -144,7 +165,8 @@ function showErrorIMG(errorArray){
     }
     if(errorArray.length==1){
         eNumb = errorArray[0]+1;
-        return  "<li> A imagem " + eNumb + " não possui descrição</li>"
+        return  "<li> A imagem " + eNumb + " não possui descrição</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
     }else if(errorArray.length>1){
 
         for (i = 0; i < errorArray.length; i++) {
@@ -154,7 +176,8 @@ function showErrorIMG(errorArray){
                 eNumb = eNumb + (errorArray[i]+1);
             }
         }
-        return "<li> As imagens " + eNumb + " não possuem descrição</li>";
+        return "<li> As imagens " + eNumb + " não possuem descrição</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
     } 
 }
 
@@ -166,7 +189,8 @@ function showErrorTBL(errorArray){
     }
     if(errorArray.length==1){
         eNumb = errorArray[0]+1;
-        return  "<li> A tabela " + eNumb + " não possui descrição</li>"
+        return  "<li> A tabela " + eNumb + " não possui descrição</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
     }else if(errorArray.length>1){
 
         for (i = 0; i < errorArray.length; i++) {
@@ -176,9 +200,14 @@ function showErrorTBL(errorArray){
                 eNumb = eNumb + (errorArray[i]+1);
             }
         }
-        return "<li> As tabelas " + eNumb + " não possuem descrição</li>";
+        return "<li> As tabelas " + eNumb + " não possuem descrição</li>" +
+        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
     } 
 }
+
+
+
+
 
 });
 
@@ -192,7 +221,7 @@ function showErrorTBL(errorArray){
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModalP" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -200,28 +229,93 @@ function showErrorTBL(errorArray){
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Como melhorar a usabilidade!</h4>
-      </div>
-      <div class="modal-body">
-        <iframe src="{% url 'menuInicial' %} " width="100%" height="70%"></iframe>        
+        </div>
+        <div class="modal-body">
+            <iframe src="{% url 'show_error_paragrafo' %} " width="100%" height="70%"></iframe>        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  </div>
 </div>
 
+<div class="modal fade" id="myModalImg" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Como melhorar a usabilidade!</h4>
+        </div>
+        <div class="modal-body">
+            <iframe src="{% url 'show_error' %} " width="100%" height="70%"></iframe>        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+
+    </div>
 </div>
+
+<div class="modal fade" id="myModalTbl" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Como melhorar a usabilidade!</h4>
+        </div>
+        <div class="modal-body">
+            <iframe src="{% url 'show_error_tabela' %} " width="100%" height="70%"></iframe>        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+
+    </div>
 </div>
+
 </div>
 
 <script>
-    function mostrarDica() {
+    function mostrarDicaP() {
         $('#id_text_tbl').popover('hide')
     }
     $(document).ready(function(){
         $("#myBtn").click(function(){
-            $("#myModal").modal("show");
+            $("#myModalP").modal("show");
         });
-        $("#myModal").on('hidden.bs.modal', function () {
+        $("#myModalP").on('hidden.bs.modal', function () {
+            $('#id_text_tbl').popover('show')
+        });
+    });
+
+        function mostrarDicaImg() {
+        $('#id_text_tbl').popover('hide')
+    }
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModalImg").modal("show");
+        });
+        $("#myModalImg").on('hidden.bs.modal', function () {
+            $('#id_text_tbl').popover('show')
+        });
+    });
+
+        function mostrarDicaTbl() {
+        $('#id_text_tbl').popover('hide')
+    }
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModalTbl").modal("show");
+        });
+        $("#myModalTbl").on('hidden.bs.modal', function () {
             $('#id_text_tbl').popover('show')
         });
     });

@@ -57,7 +57,7 @@ class ExamTemplate(models.Model):
 class Exam(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=300, verbose_name=_(u'Título da sua prova'))
-    template = models.ForeignKey('blog.ExamTemplate', verbose_name=_('Template da sua prova'))
+    template = models.ForeignKey('blog.ExamTemplate', verbose_name=_('Modelo de template que sera usado na sua prova'))
 
     class Meta:
         permissions = (
@@ -70,11 +70,11 @@ class Exam(models.Model):
 
 class Option(models.Model):
     question = models.ForeignKey('blog.Question')
-    option = HTMLField(verbose_name=_('Alternativa'))
+    option = HTMLField(verbose_name=_('Texto da alternativa. Nao e necessario colocar letra.'))
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)
-    text = HTMLField(verbose_name=_(u'Título da sua questão'))
+    text = HTMLField(verbose_name=_(u'Titulo da questao. Não e necessário colocar numeracao.'))
 
     class Meta:
         permissions = (
