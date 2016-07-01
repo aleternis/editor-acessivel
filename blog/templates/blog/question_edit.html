@@ -6,19 +6,22 @@
 
 <div class=" col-md-9">
 
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="post-form" onsubmit="return(validate());">{% csrf_token %}
 
         {{ form.media }}
         {{ form.as_p }}
 
-        <button type="submit"  onclick="return validaForm()"  class="save btn btn-default">Salvar</button>
+        <button type="submit"  class="save btn btn-default">Salvar</button>
     </form>
 
 </div>
 
 
 <script>
-
+    var error = false;
+    var pError = "";
+    var imgError = "";
+    var tblError = "";
 /*$(document).ready(function() {
   // executes when HTML-Document is loaded and DOM is ready
   alert("document is ready");
@@ -27,9 +30,9 @@
 $(window).load(function() {
     $('body#tinymce', $('iframe#id_text_ifr').contents()).keyup( function(e) {
         var error = false;
-        var pError = "";
-        var imgError = "";
-        var tblError = "";
+        pError = "";
+        imgError = "";
+        tblError = "";
 
         var errorNmb = "";
         var errorFormat = [];
@@ -50,170 +53,172 @@ $(window).load(function() {
             }else{
               listP[i].style.color = "black";
 
-          }
-      }
+            }
+        }
 
       pError = showErrorP(errorFormat)
 
       //Testar tag img
-      errorFormat=[];
-      for (i = 0; i < listImg.length; i++) {
-        alt = listImg[i].getAttribute('alt');
-        if (alt === "") {
-            errorFormat.push(i);
+        errorFormat=[];
+        for (i = 0; i < listImg.length; i++) {
+            alt = listImg[i].getAttribute('alt');
+            if (alt === "") {
+                errorFormat.push(i);
 
-            listImg[i].style.border='2px solid red';
-            error = true;
-        }else{
-            listImg[i].style.border='none';
+                listImg[i].style.border='2px solid red';
+                error = true;
+            }else{
+                listImg[i].style.border='none';
+            }
         }
-    }
-    imgError = showErrorIMG(errorFormat)
+        imgError = showErrorIMG(errorFormat)
 
 
       //Testar tag tabela
 
-      errorFormat=[];
-      for (i = 0; i < listTbl.length; i++) {
-        captionList = listTbl[i].getElementsByTagName('caption');
-        if (captionList.length == 0 || captionList[0].innerHTML == '<br data-mce-bogus="1">') {
-            errorFormat.push(i);
-            listTbl[i].style.border='2px solid red';
-            error = true;
-        }else{
+        errorFormat=[];
+        for (i = 0; i < listTbl.length; i++) {
+            captionList = listTbl[i].getElementsByTagName('caption');
+            if (captionList.length == 0 || captionList[i].innerHTML == '<br data-mce-bogus="1">') {
+                errorFormat.push(i);
+                listTbl[i].style.border='2px solid red';
+                error = true;
+            }else{
 
-            listTbl[i].style.border='none';
+                listTbl[i].style.border='none';
+            }
         }
-    }
-    tblError = showErrorTBL(errorFormat)
+        tblError = showErrorTBL(errorFormat)
         
 
 
-
-
-
-// VALIDADOR DO FORM
-//    $(".post-form").submit(function() {
-//       if(error){
-//            alert('Paragrafo, ou imagem, ou tabela com erro');      
-//            return false;
-//        }
-//
-//    });
-
-
-
-
-
-
-
-
         //mostrar error e exibir pop up
-    if(error){
-        $('#id_text_tbl').popover({
-            title :"<h4>Elementos não conforme!</h4>",
-            content: "<lu>" +
+
+
+        
+
+        if(error){
+            $('#id_text_tbl').popover({
+                title :"<h4>Elementos não conforme!</h4>",
+                content: "<lu>" +
+                pError+
+                imgError+
+                tblError+
+                "</lu>",
+                container: "body",
+                html: true,
+                animation: false,
+            })
+            $('#id_text_tbl').data('bs.popover').options.content =
+            "<lu>" +
             pError+
             imgError+
             tblError+
-            "</lu>",
-            container: "body",
-            html: true,
-            animation: false,
-        })
-        $('#id_text_tbl').data('bs.popover').options.content =
-        "<lu>" +
-        pError+
-        imgError+
-        tblError+
-        "</lu>";
+            "</lu>";
 
-        $('#id_text_tbl').popover('show')
-    }else{
+            $('#id_text_tbl').popover('show')
+        }else{
 
-        $('#id_text_tbl').popover('hide')
-    }
-
-// tag p
-function showErrorP(errorArray){
-    var eNumb ="";
-    if(errorArray.length==0){
-        return "";
-    }
-    if(errorArray.length==1){
-        eNumb = errorArray[0]+1;
-        return  "<li> Paragrafo " + eNumb + " está muito longo</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
-    }else if(errorArray.length>1){
-
-        for (i = 0; i < errorArray.length; i++) {
-            if(i!=(errorArray.length-1)){
-                eNumb = eNumb + (errorArray[i]+1) + ", ";
-            }else{
-                eNumb = eNumb + (errorArray[i]+1);
-            }
+            $('#id_text_tbl').popover('hide')
         }
-        return "<li> Paragrafos " + eNumb + " estão muito longo</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
-    } 
-}
-// tag img
-function showErrorIMG(errorArray){
-    var eNumb ="";
-    if(errorArray.length==0){
-        return "";
-    }
-    if(errorArray.length==1){
-        eNumb = errorArray[0]+1;
-        return  "<li> A imagem " + eNumb + " não possui descrição</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
-    }else if(errorArray.length>1){
 
-        for (i = 0; i < errorArray.length; i++) {
-            if(i!=(errorArray.length-1)){
-                eNumb = eNumb + (errorArray[i]+1) + ", ";
-            }else{
-                eNumb = eNumb + (errorArray[i]+1);
+        // tag p
+        function showErrorP(errorArray){
+            var eNumb ="";
+            if(errorArray.length==0){
+                return "";
             }
+            if(errorArray.length==1){
+                eNumb = errorArray[0]+1;
+                return  "<li> Paragrafo " + eNumb + " está muito longo</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
+            }else if(errorArray.length>1){
+
+                for (i = 0; i < errorArray.length; i++) {
+                    if(i!=(errorArray.length-1)){
+                        eNumb = eNumb + (errorArray[i]+1) + ", ";
+                    }else{
+                        eNumb = eNumb + (errorArray[i]+1);
+                    }
+                }
+                return "<li> Paragrafos " + eNumb + " estão muito longo</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalP" onclick="mostrarDicaP()">Como corrigir?</button> <br/>';
+            } 
         }
-        return "<li> As imagens " + eNumb + " não possuem descrição</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
-    } 
-}
-
-//tag table
-function showErrorTBL(errorArray){
-    var eNumb ="";
-    if(errorArray.length==0){
-        return "";
-    }
-    if(errorArray.length==1){
-        eNumb = errorArray[0]+1;
-        return  "<li> A tabela " + eNumb + " não possui descrição</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
-    }else if(errorArray.length>1){
-
-        for (i = 0; i < errorArray.length; i++) {
-            if(i!=(errorArray.length-1)){
-                eNumb = eNumb + (errorArray[i]+1) + ", ";
-            }else{
-                eNumb = eNumb + (errorArray[i]+1);
+        // tag img
+        function showErrorIMG(errorArray){
+            var eNumb ="";
+            if(errorArray.length==0){
+                return "";
             }
+            if(errorArray.length==1){
+                eNumb = errorArray[0]+1;
+                return  "<li> A imagem " + eNumb + " não possui descrição</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
+            }else if(errorArray.length>1){
+
+                for (i = 0; i < errorArray.length; i++) {
+                    if(i!=(errorArray.length-1)){
+                        eNumb = eNumb + (errorArray[i]+1) + ", ";
+                    }else{
+                        eNumb = eNumb + (errorArray[i]+1);
+                    }
+                }
+                return "<li> As imagens " + eNumb + " não possuem descrição</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalImg" onclick="mostrarDicaImg()">Como corrigir?</button> <br/>';
+            } 
         }
-        return "<li> As tabelas " + eNumb + " não possuem descrição</li>" +
-        '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
-    } 
-}
+
+        //tag table
+        function showErrorTBL(errorArray){
+            var eNumb ="";
+            if(errorArray.length==0){
+                return "";
+            }
+            if(errorArray.length==1){
+                eNumb = errorArray[0]+1;
+                return  "<li> A tabela " + eNumb + " não possui descrição</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
+            }else if(errorArray.length>1){
+
+                for (i = 0; i < errorArray.length; i++) {
+                    if(i!=(errorArray.length-1)){
+                        eNumb = eNumb + (errorArray[i]+1) + ", ";
+                    }else{
+                        eNumb = eNumb + (errorArray[i]+1);
+                    }
+                }
+                return "<li> As tabelas " + eNumb + " não possuem descrição</li>" +
+                '<button type="button" class="btn btn-default btn-sm center-block" data-toggle="modal" data-target="#myModalTbl" onclick="mostrarDicaTbl()">Como corrigir?</button>';
+            } 
+        }
 
 
+    });
 
-
+    
 
 });
 
-});
+function validate()
+        {
 
+            if(pError.length != 0 ||imgError.length != 0 || tblError.length != 0){
+                if(pError.length != 0 ){    
+                    alert('Paragrafo com erro');      
+                }
 
+                if(imgError.length != 0){
+                    alert('Imagem com erro');      
+                }
+
+                if(tblError.length != 0){
+                    alert('Tabela com erro');      
+                }  
+                return false;
+            }
+            return true;
+        }
 
 
 </script>
@@ -283,7 +288,13 @@ function showErrorTBL(errorArray){
 
 </div>
 
-<script>
+<script type="text/javascript">
+// VALIDADOR DO FORM
+
+
+
+    
+
     function mostrarDicaP() {
         $('#id_text_tbl').popover('hide')
     }
