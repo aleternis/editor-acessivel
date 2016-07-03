@@ -44,6 +44,7 @@ class ExamTemplate(models.Model):
     name = models.CharField(max_length=300, verbose_name=_(u'Insira o título do novo template de prova'))
     questions = models.IntegerField(verbose_name=_(u'Insira a quantidade de questões'))
     answers = models.IntegerField(verbose_name=_('Insira a quantidade de alternativas'))
+    essay = models.BooleanField(verbose_name=_(u'Marcar caso deseja incluir redação a esse template'))
 
     class Meta:
         permissions = (

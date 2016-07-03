@@ -25,7 +25,7 @@ class ExamTemplateForm(forms.ModelForm):
 
     class Meta:
         model = ExamTemplate
-        fields = ('name', 'questions', 'answers')
+        fields = ('name', 'questions', 'answers', 'essay')
 
 class QuestionForm(forms.ModelForm):
 
