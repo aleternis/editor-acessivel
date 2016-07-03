@@ -92,7 +92,7 @@ class Question(models.Model):
         self.save()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.sequence)
 
     def verify_paragraph_length(self, text):
         sentences = text.split("</p>")
