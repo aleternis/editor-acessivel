@@ -135,6 +135,7 @@ def question_new(request, pk):
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.exam = get_object_or_404(Exam, pk=pk)
+            new_form.sequence = Question.objects.filter(exam=pk).count() + 1
             new_form.save()
             return HttpResponseRedirect(reverse(question_detail, args=(new_form.pk,)))
     else:
@@ -210,7 +211,7 @@ def exam_edit(request,pk):
             exam.author = request.user
            # post.published_date = timezone.now()
             exam.save()
-            return HttpResponseRedirect(reverse(question_list, args=(exam.pk,)))
+            return HttpResponseRedirect(reverse(exam_detail, args=(exam.pk,)))
     else:
         form = ExamForm(instance=exam)
     return render(request, 'blog/exam_edit.html', {'form': form})
@@ -218,7 +219,7 @@ def exam_edit(request,pk):
 @permission_required('blog.exam_detail',raise_exception=True)
 def exam_detail(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
-    return render(request, 'blog/question_list.html', {'exam': exam})
+    return render(request, 'blog/exam_detail.html', {'exam': exam})
 
 @permission_required('blog.exam_list')
 def exam_list(request):

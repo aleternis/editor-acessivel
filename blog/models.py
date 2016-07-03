@@ -41,9 +41,9 @@ class Comment(models.Model):
         return self.text
 
 class ExamTemplate(models.Model):
-    name = models.CharField(max_length=300, verbose_name=_(u'Título do novo template'))
-    questions = models.IntegerField(verbose_name=_(u'Quantidade de questões'))
-    answers = models.IntegerField(verbose_name=_('Quantidade de alternativas'))
+    name = models.CharField(max_length=300, verbose_name=_(u'Insira o título do novo template de prova'))
+    questions = models.IntegerField(verbose_name=_(u'Insira a quantidade de questões'))
+    answers = models.IntegerField(verbose_name=_('Insira a quantidade de alternativas'))
 
     class Meta:
         permissions = (
@@ -56,8 +56,8 @@ class ExamTemplate(models.Model):
 
 class Exam(models.Model):
     author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=300, verbose_name=_(u'Título da sua prova'))
-    template = models.ForeignKey('blog.ExamTemplate', verbose_name=_('Modelo de template que sera usado na sua prova'))
+    title = models.CharField(max_length=300, verbose_name=_(u'Insira o título da sua prova'))
+    template = models.ForeignKey('blog.ExamTemplate', verbose_name=_(u'Escolha o modelo de template que será usado na sua prova'))
 
     class Meta:
         permissions = (
@@ -70,11 +70,12 @@ class Exam(models.Model):
 
 class Option(models.Model):
     question = models.ForeignKey('blog.Question')
-    option = HTMLField(verbose_name=_('Texto da alternativa. Nao e necessario colocar letra.'))
+    option = HTMLField(verbose_name=_(u'Insira o texto da alternativa'))
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam', default=1)
-    text = HTMLField(verbose_name=_(u'Titulo da questao. Não e necessário colocar numeracao.'))
+    text = HTMLField(u'Insira o título da questão sem a sua numeração')
+    sequence = models.IntegerField()
 
     class Meta:
         permissions = (

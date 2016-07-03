@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^option/new/(?P<pk>[0-9]+)/$', views.option_new, name='option_new'),
     url(r'^option/(?P<pk>[0-9]+)/edit/$', views.option_edit, name='option_edit'),
     url(r'^exam/new/$', views.exam_new, name='exam_new'),
+    url(r'^exam/(?P<pk>[0-9]+)/detail$', views.exam_detail, name='exam_detail'),
     url(r'^exam/choose/$', views.choose_exam, name='choose_exam'),
     url(r'^exam/(?P<pk>[0-9]+)/$', views.question_list, name='question_list'),
     url(r'^exam/(?P<pk>[0-9]+)/edit/$', views.exam_edit, name='exam_edit'),
