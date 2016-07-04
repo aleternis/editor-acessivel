@@ -3,19 +3,12 @@
 {% block content %}
 
 
-<script type="text/javascript">
-	$(function() {
-		$( "#sortable" ).sortable({ 
-			placeholder: "ui-sortable-placeholder" 
-		});
-	});
-</script>
-
 
 
 <div class="row">
 	{% if has_essay%}
-		<p><a href="{% url 'blog.views.essay_new' pk=exam_pk %}" class="btn btn-default" role="button">Redação</a>
+	<h3>Redação</h3>
+		<p><a href="{% url 'blog.views.essay_new' pk=exam_pk %}" class="btn btn-default" role="button"> <span class="glyphicon glyphicon-plus"></span> Adicionar redação</a></p>
 	{% endif %}
 	<h3>{{questions_done}}/{{total_questions}} questões concluídas<h3>
 		
@@ -50,7 +43,10 @@
 		<span class="glyphicon glyphicon-sort"></span> Ordenar questão </a>
 
 
-<!-- Criar nova pagina para reordenar questoes, nao colocar na base pq vai bugar outras cosas-->
+<!-- Criar nova pagina para reordenar questoes, nao colocar na base pq vai bugar outras cosas
+
+CODIGO PARA REORDENAR
+
 <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://necolas.github.com/normalize.css/2.0.1/normalize.css"> 
@@ -68,6 +64,6 @@
 			{% for question in questions %}
 				<li class="ui-state-default"> Questão: {{ question.id }} {{ question.text|safe|truncatewords:"2"|linebreaks }}</li>
 			{% endfor %}
-		</ul>
+		</ul> -->
 
 		{% endblock content %}

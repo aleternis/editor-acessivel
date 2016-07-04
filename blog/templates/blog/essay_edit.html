@@ -205,15 +205,15 @@ function validate()
 
             if(pError.length != 0 ||imgError.length != 0 || tblError.length != 0){
                 if(pError.length != 0 ){    
-                    alert('Paragrafo com erro');      
+                    alert('Paragrafo muito longo, considere revisar!');      
                 }
 
                 if(imgError.length != 0){
-                    alert('Imagem com erro');      
+                    alert('Imagem sem descrição, considere revisar!');      
                 }
 
                 if(tblError.length != 0){
-                    alert('Tabela com erro');      
+                    alert('Tabela sem descrição, considere revisar!');      
                 }  
                 return false;
             }
