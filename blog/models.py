@@ -73,8 +73,12 @@ class Option(models.Model):
     question = models.ForeignKey('blog.Question')
     option = HTMLField(verbose_name=_(u'Insira o texto da alternativa'))
 
+class Essay(models.Model):
+    exam = models.ForeignKey('blog.Exam')
+    text = HTMLField(u'Insira o enunciado da redação')
+
 class Question(models.Model):
-    exam = models.ForeignKey('blog.Exam', default=1)
+    exam = models.ForeignKey('blog.Exam')
     text = HTMLField(u'Insira o título da questão sem a sua numeração')
     sequence = models.IntegerField()
 

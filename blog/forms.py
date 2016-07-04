@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Comment, Question, Exam, ExamTemplate, Option
+from .models import Post, Comment, Question, Exam, ExamTemplate, Option, Essay
 
 
 class PostForm(forms.ModelForm):
@@ -32,6 +32,12 @@ class QuestionForm(forms.ModelForm):
 	class Meta:
 		model = Question
 		fields = ('text',)
+
+class EssayForm(forms.ModelForm):
+
+    class Meta:
+        model = Essay
+        fields = ('text',)
 
 class OptionForm(forms.ModelForm):
 

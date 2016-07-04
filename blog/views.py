@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post, Comment, Question, Exam, ExamTemplate, Option
+from .models import Post, Comment, Question, Exam, ExamTemplate, Option, Essay
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm, OptionForm
+from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm, OptionForm, EssayForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
@@ -120,8 +120,9 @@ def question_list(request, pk):
     exam = Exam.objects.get(pk=pk)
     total_questions = exam.template.questions
     questions_done = questions.count()
+    has_essay = exam.template.essay
     return render(request, 'blog/question_list.html', {'questions': questions, 'questions_done':questions_done,
-        'total_questions':total_questions,'exam_pk':pk})
+        'total_questions':total_questions,'exam_pk':pk, 'has_essay': has_essay})
 
 @permission_required('blog.add_question',raise_exception=True)
 def choose_exam(request):
@@ -143,7 +144,6 @@ def question_new(request, pk):
     return render(request, 'blog/question_edit.html', {'form': form})
 
 @permission_required('blog.add_question',raise_exception=True)
-
 def question_edit(request, pk):
     question = get_object_or_404(Question, pk=pk)
     if request.method == "POST":
@@ -254,6 +254,35 @@ def exam_template_edit(request,pk):
 def exam_template_detail(request, pk):
     exam_template = get_object_or_404(ExamTemplate, pk=pk)
     return render(request, 'blog/exam_template_detail.html', {'exam_template': exam_template})
+
+@permission_required('blog.add_question',raise_exception=True)
+def essay_new(request, pk):
+    if request.method == "POST":
+        form = EssayForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.exam = get_object_or_404(Exam, pk=pk)
+            new_form.save()
+            return redirect('blog.views.essay_detail', pk=new_form.pk)
+    else:
+        form = EssayForm()
+    return render(request, 'blog/essay_edit.html', {'form': form})
+
+def essay_edit(request,pk):
+    essay = get_object_or_404(Essay, pk=pk)
+    if request.method == "POST":
+        form = EssayForm(request.POST, instance = essay)
+        if form.is_valid():
+            essay = form.save(commit=False)
+            essay.save()
+            return HttpResponseRedirect(reverse(essay_detail, args=(essay.pk,)))
+    else:
+        form = EssayForm(instance=essay)
+    return render(request, 'blog/essay_edit.html', {'form': form})
+
+def essay_detail(request, pk):
+    essay = get_object_or_404(Essay, pk=pk)
+    return render(request, 'blog/essay_detail.html', {'essay': essay})
 
 @permission_required('blog.add_question',raise_exception=True)
 def notfinished_exams(request):

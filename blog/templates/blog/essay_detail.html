@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+
+<div class="row">
+	<h3>Redação<h3>
+		
+		<div class="col-md-8 col-sm-4">
+			<div class="thumbnail">
+				<div class="caption">
+					<p>{{ essay.text | safe }}  <a class="btn btn-default" href="{% url 'essay_edit' pk=essay.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </p>
+
+				</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
