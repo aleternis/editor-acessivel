@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post, Comment, Question, Exam, ExamTemplate, Option, Essay
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm, OptionForm, EssayForm
+from .forms import PostForm, CommentForm, QuestionForm, ExamForm, ExamTemplateForm, OptionForm, EssayForm, UserCreateForm
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import Group
 
 def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -283,6 +285,20 @@ def essay_edit(request,pk):
 def essay_detail(request, pk):
     essay = get_object_or_404(Essay, pk=pk)
     return render(request, 'blog/essay_detail.html', {'essay': essay})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            g = Group.objects.get(name='Professor') 
+            g.user_set.add(new_user)
+            return redirect('django.contrib.auth.views.login')
+    else:
+        form = UserCreateForm()
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
 
 @permission_required('blog.add_question',raise_exception=True)
 def notfinished_exams(request):

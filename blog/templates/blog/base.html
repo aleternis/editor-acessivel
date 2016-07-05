@@ -93,7 +93,7 @@
         {% else %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{% url 'registration' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span></a></li>
         {% endif %}
 

@@ -14,7 +14,7 @@ Including another URLconf
 2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import patterns, include, url
-
+from blog import views
 from django.contrib import admin
 admin.autodiscover()
 
@@ -22,5 +22,6 @@ urlpatterns = [
 url(r'^admin/', include(admin.site.urls)),
 url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+url(r'^accounts/registration/$', views.register, name='registration'),
 url(r'', include('blog.urls')),
 ]
