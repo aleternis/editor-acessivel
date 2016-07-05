@@ -314,8 +314,11 @@ def exams_not_completed_byuser(author):
     exams = Exam.objects.filter(author=author)
     exams_not_finished = []
     for exam in exams:
-        if not is_exam_completed(exam):
-            exams_not_finished.append(exam)
+        questions = Question.objects.filter(exam=exam)
+        for question in questions:
+            if not is_question_completed(question):
+                exams_not_finished.append(exam)
+                break
     return exams_not_finished
 
 def exams_completed_byuser(author):
@@ -323,8 +326,18 @@ def exams_completed_byuser(author):
     exams_finished = []
     for exam in exams:
         if is_exam_completed(exam):
-            exams_finished.append(exam)
+            questions = Question.objects.filter(exam=exam)
+            if all(is_question_completed(question) for question in questions):
+                exams_finished.append(exam)
     return exams_finished
+
+def is_question_completed(question):
+    total_options = question.exam.template.answers
+    options_done = Option.objects.filter(question=question.id).count()
+    if total_options==options_done:
+        return True
+    else:
+        return False
 
 def is_exam_completed(Exam):
     total_questions = Exam.template.questions
