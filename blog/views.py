@@ -303,12 +303,12 @@ def register(request):
 @permission_required('blog.add_question',raise_exception=True)
 def notfinished_exams(request):
     exams = exams_not_completed_byuser(request.user)
-    return render(request, 'blog/exam_list.html', {'exams': exams})  
+    return render(request, 'blog/notfinished_exam_list.html', {'exams': exams})  
 
 @login_required
 def finished_exams (request): 
     exams = exams_completed_byuser(request.user)
-    return render(request, 'blog/exam_list.html', {'exams': exams}) 
+    return render(request, 'blog/finished_exam_list.html', {'exams': exams}) 
 
 def exams_not_completed_byuser(author):
     exams = Exam.objects.filter(author=author)

@@ -6,8 +6,9 @@
 
 
 <div class="row">
+	  
 	{% if exams %}
-		<h1>Provas</h1>
+		<h1>Provas Completas</h1>
 		{% for exam in exams %}
 
 			<div class="col-md-3 col-sm-4">
@@ -24,8 +25,7 @@
 
 		{% endfor %}
 	{% else %}
-		<h2>Comece criando uma prova</h2>
-		<a href="{% url 'exam_new' %}" class="btn btn-default" role="button">Criar Prova</a>
+		<h2>Você não possui nenhuma prova completa</h2>
 	{% endif %}
 
 </div>
