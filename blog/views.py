@@ -343,11 +343,14 @@ def exams_not_completed_byuser(author):
     exams = Exam.objects.filter(author=author)
     exams_not_finished = []
     for exam in exams:
-        questions = Question.objects.filter(exam=exam)
-        for question in questions:
-            if not is_question_completed(question):
-                exams_not_finished.append(exam)
-                break
+        if not is_exam_completed(exam):
+            exams_not_finished.append(exam)
+        else:
+            questions = Question.objects.filter(exam=exam)
+            for question in questions:
+                if not is_question_completed(question):
+                    exams_not_finished.append(exam)
+                    break
     return exams_not_finished
 
 def exams_completed_byuser(author):
