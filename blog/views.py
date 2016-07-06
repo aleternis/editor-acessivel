@@ -116,6 +116,31 @@ def question_detail(request, pk):
     return render(request, 'blog/question_detail.html', {'question': question, 'todo': todo,
      'options': options, 'exam_pk': exam_pk})
 
+@permission_required('blog.question_detail',raise_exception=True)
+def question_view_detail(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    num_options = question.exam.template.answers
+    exam_pk = question.exam.id
+    num_options_done = Option.objects.filter(question=pk).count()
+    options = None
+    if num_options_done > 0:
+        options = Option.objects.filter(question=pk)
+    num_options_todo = num_options - num_options_done
+    todo = []
+    done = []
+
+    for i in range(num_options_done):
+        done.append(chr(ord('a')+i))
+    
+    if num_options_done > 0:
+        options = zip(done,options) 
+
+    for i in range(num_options_todo):
+        todo.append(chr(ord('a')+i+num_options_done))
+
+    return render(request, 'blog/question_view_detail.html', {'question': question, 'todo': todo,
+     'options': options, 'exam_pk': exam_pk})
+
 @permission_required('blog.question_list',raise_exception=True)
 def question_list(request, pk):
     questions = Question.objects.filter(exam=pk)
