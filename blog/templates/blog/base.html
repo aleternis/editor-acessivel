@@ -86,15 +86,15 @@
 
         <!--<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>-->
 
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Hello {{ user.username }}</a></li>
-        <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Olá, {{ user.username }}</a></li>
+        <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 
 
         {% else %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'registration' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span></a></li>
+            <li><a href="{% url 'registration' %}"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
+            <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span> Logar</a></li>
         {% endif %}
 
     </ul>
