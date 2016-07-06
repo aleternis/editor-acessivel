@@ -284,7 +284,7 @@ def essay_edit(request,pk):
 
 def essay_detail(request, pk):
     essay = get_object_or_404(Essay, pk=pk)
-    return render(request, 'blog/essay_detail.html', {'essay': essay})
+    return render(request, 'blog/essay_detail.html', {'essay': essay, 'exam_pk':pk})
 
 def register(request):
     if request.method == 'POST':

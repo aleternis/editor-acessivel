@@ -10,12 +10,12 @@
 		<div class="col-md-8 col-sm-4">
 			<div class="thumbnail">
 				<div class="caption">
-					<p>{{ essay.text | safe }}  <a class="btn btn-default" href="{% url 'essay_edit' pk=essay.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </p>
-
-				</p>
+					<p>{{ essay.text | safe }}</p>
+				</div>
 			</div>
+			<p><a href="{% url 'question_list' pk=exam_pk %}" class="btn btn-default" role="button"> <span class="glyphicon glyphicon-chevron-left"></span> Voltar para lista de questões </a>
+					 <a class="btn btn-default" href="{% url 'essay_edit' pk=essay.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </p>
 		</div>
-	</div>
 
 </div>
 
