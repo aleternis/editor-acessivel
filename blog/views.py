@@ -371,9 +371,18 @@ def is_question_completed(question):
     else:
         return False
 
-def is_exam_completed(Exam):
-    total_questions = Exam.template.questions
-    questions_done = Question.objects.filter(exam=Exam.id).count()
+def is_essay_completed(exam):
+     essay = Essay.objects.filter(exam=exam)
+     if essay:
+        return True
+
+def is_exam_completed(exam):
+    total_questions = exam.template.questions
+    questions_done = Question.objects.filter(exam=exam).count()
+    has_essay = exam.template.essay
+    if has_essay:
+        if not is_essay_completed:
+            return False
     if total_questions==questions_done:
         return True
     else:
