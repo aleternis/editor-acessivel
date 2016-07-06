@@ -290,25 +290,29 @@ def essay_new(request, pk):
             new_form = form.save(commit=False)
             new_form.exam = get_object_or_404(Exam, pk=pk)
             new_form.save()
-            return redirect('blog.views.essay_detail', pk=new_form.pk)
+            return redirect('blog.views.essay_detail', pk=pk)
     else:
         form = EssayForm()
     return render(request, 'blog/essay_edit.html', {'form': form})
 
 def essay_edit(request,pk):
-    essay = get_object_or_404(Essay, pk=pk)
+    essay = Essay.objects.get(exam=pk)
     if request.method == "POST":
-        form = EssayForm(request.POST, instance = essay)
+        form = EssayForm(request.POST, instance=essay)
         if form.is_valid():
             essay = form.save(commit=False)
             essay.save()
-            return HttpResponseRedirect(reverse(essay_detail, args=(essay.pk,)))
+            return HttpResponseRedirect(reverse(essay_detail, args=(pk,)))
     else:
         form = EssayForm(instance=essay)
     return render(request, 'blog/essay_edit.html', {'form': form})
 
 def essay_detail(request, pk):
-    essay = get_object_or_404(Essay, pk=pk)
+    try:
+        essay = Essay.objects.get(exam=pk)
+    except Essay.DoesNotExist:
+        essay = None
+
     return render(request, 'blog/essay_detail.html', {'essay': essay, 'exam_pk':pk})
 
 def register(request):
