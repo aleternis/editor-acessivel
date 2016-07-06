@@ -15,18 +15,19 @@
 				<div class="caption">
 					<p>{{ question.text | safe }}  <a class="btn btn-default" href="{% url 'question_edit' pk=question.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> </p>
 
-					<hr>
 					{% if options%}
 					{% for d,option in options %}
+
+					<hr>
 					<p>{{d}}:{{option.option | safe}}  <a class="btn btn-default" href="{% url 'option_edit' pk=option.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></p>
-										<hr>
 
 					{% endfor %}
 					{% endif %}
 
 					{% for new_option in todo %}
+					<hr>
 					<p>{{new_option}}) <a href="{% url 'option_new' pk=question.pk %}">Criar alternativa</a></p>
-										<hr>
+										
 
 					{% endfor %}
 
@@ -37,12 +38,13 @@
 
 </div>
 
+<!-- <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open"></span> Vizualizar questão na prova </a> -->
 
-<a href="{% url 'question_list' pk=exam_pk %}" class="btn btn-default" role="button">
-	<span class="glyphicon glyphicon-chevron-left"></span> Voltar para lista de questões </a>
+<a href="{% url 'question_list' pk=exam_pk %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Voltar para lista de questões </a>
 
-	<a href="#" class="btn btn-default" role="button">
-		<span class="glyphicon glyphicon-sort"></span> Ordenar questão </a>
+<a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-sort"></span> Ordenar questão </a>
+
+<a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open"></span> Vizualizar questão na prova </a> 
 
 		<!-- Criar nova pagina para reordenar questoes, nao colocar na base pq vai bugar outras cosas
 
