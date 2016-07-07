@@ -71,7 +71,7 @@ class Exam(models.Model):
 
 class Option(models.Model):
     question = models.ForeignKey('blog.Question')
-    option = HTMLField(verbose_name=_(u'Insira o texto da alternativa'))
+    option = HTMLField(verbose_name=_(u'Insira o texto da alternativa sem a letra'))
 
 class Essay(models.Model):
     exam = models.ForeignKey('blog.Exam')
@@ -79,7 +79,7 @@ class Essay(models.Model):
 
 class Question(models.Model):
     exam = models.ForeignKey('blog.Exam')
-    text = HTMLField(u'Insira o título da questão sem a sua numeração')
+    text = HTMLField(u'Insira o enunciado da questão sem a sua numeração')
     sequence = models.IntegerField()
 
     class Meta:
@@ -88,30 +88,13 @@ class Question(models.Model):
             ("question_detail", "Can see question detail"),
         )
 
-    def clean(self):
-        output = self.verify_paragraph_length(self.text)
-        if output:
-            raise ValidationError(output)
-
     def create(self):
         self.save()
 
     def __str__(self):
         return str(self.sequence)
 
-    def verify_paragraph_length(self, text):
-        sentences = text.split("</p>")
-        alt = 'alt=""'
-        tabela_desc='<br data-mce-bogus="1">'
-        output = []
-        for index, i in enumerate(sentences, start=1):
-       #     if len(i.split()) > 10:
-       #         output.append('paragraph %d is too long' % index)
-            if alt in i:
-                output.append('Imagem sem descricao.')
-            if tabela_desc in i:
-                output.append('Tabela sem descricao.')
-        return output
+  
 
 
 

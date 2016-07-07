@@ -1,0 +1,127 @@
+@charset "utf-8";
+html { 
+	font: 1rem Arial, Helvetica, sans-serif; 
+	margin: 0;
+	padding: 0;
+}
+body { 
+	padding: 1.25rem; 
+	margin: 1.25rem;
+	position: relative;
+	max-width: 1000px;
+}
+nav { 
+	margin-top: 2rem;
+}
+nav ul { 
+	padding: 0; 
+}
+main { 
+	border-bottom: 0.15rem solid #bbb;
+	padding: 0 0 1rem 0;
+	margin: 0 0 2rem 0;
+}
+h1, h2, h3, h4 { 
+	font-weight: normal; 
+}
+h1 { 
+	padding: 0;
+	margin: 0 0 2rem 0;
+}
+h2 { 
+	margin: 2rem 0 1rem 0; 
+}
+:focus { 
+	outline: 0.15rem solid #f90; 
+}
+.breadcrumb { 
+	display: none; 
+}
+#ui-alert {
+	display: none;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	padding: 1.25rem;
+	background-color: #eee;
+	border: 0.15rem solid #bbb;	
+}
+table { 
+	margin-bottom: 1rem; 
+}
+table, table th, table td { 
+	border: 0.15rem solid #bbb;
+	border-collapse: collapse;
+	text-align: center;
+}
+table th { 
+	padding: 0.75rem; 
+	background-color: #eee;
+	font-weight: normal;
+	font-style: italic;
+}
+table td p { 
+	margin: 0; 
+	padding: 0.5rem; 
+}
+fieldset { 
+	margin-bottom: 1rem; 
+}
+fieldset label { 
+	padding: 1rem; 
+}
+fieldset legend { 
+	padding: 0 1rem 0 1rem; 
+}
+input { 
+	padding: 1rem; 
+	white-space: pre-wrap; 
+}
+textarea { 
+	margin-bottom: 1rem; 
+	border: 0.15rem solid #bbb;
+	padding: 1rem;	
+	width: 95%;
+}
+label { 
+	display: block; 
+}
+a[role="button"], input[type="submit"] {
+	border: 0.15rem solid #bbb;
+	padding: 1rem;	
+	display: inline-block;
+	margin: 0.25rem 0.25rem 0.25rem 0;
+	text-decoration: none;
+	background-color: #eee;
+	font: inherit;
+}
+a[role="button"]:hover, a[role="button"]:focus, input[type="submit"]:hover, input[type="submit"]:focus, textarea:focus {
+	border-color: #111;		
+}
+.list-none { 
+	list-style: none; 
+	padding: 0;
+	margin: 0;
+}
+.list-inline li { 
+	display: inline-block; 
+}
+#alternative-list {
+	padding: 0 0 1.5rem 0;
+	margin-bottom: 1.5rem;
+	border-bottom: 0.15rem solid #bbb;	
+}
+#alternative-list li { 
+	padding: 0; 
+	margin: 0; 
+}
+#alternative-list a[aria-checked="true"] { 
+	color: #090; 
+}
+.contents-list ul, .answers-list ul, .help-list ul { 
+	padding-left: 0;  
+}
+.contents-list li, .answers-list li, .help-list li { 
+	list-style: none; 
+	padding-left: 0;  
+}
