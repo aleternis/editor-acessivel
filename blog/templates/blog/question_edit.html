@@ -8,19 +8,20 @@
 <script type="text/javascript" src="{% static 'javascript/textValidation.js' %}"></script>
 
 
-<div class=" col-md-9">
-
+<div class="col-md-9">    
     <form method="POST" class="post-form" onsubmit="return(validateError());">{% csrf_token %}
-
+        
         {{ form.media }}
         {{ form.as_p }}
 
         <button type="submit"  class="save btn btn-default">Salvar</button>
     </form>
-
 </div>
 
-
+    <div class=" col-sm-9"> 
+        <button type="button" class="btn btn-default btn-md center-block" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Dicas de acessibilidade</button>
+    </div>
+</div>
 <script>
   
 
@@ -31,7 +32,6 @@ $(window).load(function() {
 });
 
 
- 
 </script>
 
 
@@ -97,14 +97,43 @@ $(window).load(function() {
     </div>
 </div>
 
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Como melhorar a usabilidade!</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{% url 'menuInicial' %} " width="100%" height="70%"></iframe>        
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <script type="text/javascript">
-// VALIDADOR DO FORM
 
 
+    function mostrarDica() {
+        $('#id_text_tbl').popover('hide')
+    }
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal("show");
+        });
+        $("#myModal").on('hidden.bs.modal', function () {
+            $('#id_text_tbl').popover('show')
+        });
+    });
 
-    
 
     function mostrarDicaP() {
         $('#id_text_tbl').popover('hide')

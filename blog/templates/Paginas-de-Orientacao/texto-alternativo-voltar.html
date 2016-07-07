@@ -1,0 +1,102 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>			
+<html lang="pt-br">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/estilo.css' %}" type="text/css" />
+	<title>Exemplos de texto alternativo</title>
+</head>	
+<body>
+<section>
+    <nav class="voltar">
+        <a href="{% url 'menuInicial' %}">Voltar</a>
+    </nav> 
+	<article>
+		<h1>Exemplos de texto alternativo</h1>
+		<div class="exemplos">
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_1' %}">
+					<img src="{% static 'img/thumb-pinguim.png' %}" alt="Exemplo 1"/>
+					<figcaption><strong>Exemplo 1:</strong> Figura comum</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_2' %}">
+					<img src="{% static 'img/thumb-santos-dummont.png' %}" alt="Exemplo 2"/>
+					<figcaption><strong>Exemplo 2:</strong> Fotografia</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_3' %}">
+					<img src="{% static 'img/thumb-tarsila.png' %}" alt="Exemplo 3"/>
+					<figcaption><strong>Exemplo 3:</strong> Figura abstrata</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_4' %}">
+					<img src="{% static 'img/thumb-inscricoes-abertas.png' %}" alt="Exemplo 4"/>
+					<figcaption><strong>Exemplo 4:</strong> Imagem de texto</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_5' %}">
+					<img src="{% static 'img/thumb-workshop.png' %}" alt="Exemplo 5"/>
+					<figcaption><strong>Exemplo 5:</strong> Imagem com conteúdo</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_6' %}">
+					<img src="{% static 'img/thumb-grafico.png' %}" alt="Exemplo 6"/>
+					<figcaption><strong>Exemplo 6:</strong> Gráficos</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_7' %}">
+					<img src="{% static 'img/thumb-organograma.png' %}" alt="Exemplo 7"/>
+					<figcaption><strong>Exemplo 7:</strong> Organogramas</figcaption>
+				</a>
+			</figure>
+			<figure class="thumb">
+				<a href="{% url 'show_error_img_8' %}">
+					<img src="{% static 'img/thumb-decorativa.png' %}" alt="Exemplo 8"/>
+					<figcaption><strong>Exemplo 8:</strong> Imagem decorativa</figcaption>
+				</a>
+			</figure>			
+		</div>
+		<div class="obs">
+			<p><strong>Importante: </strong>O texto alternativo é informação que será exibida em situações onde não seja possível visualizar a imagem, por exemplo, quando a imagem não é carregada pelo navegador ou quando um cego acessa o conteúdo do site utilizando leitor de telas. Ele depende do contexto de onde a imagem está inserida e deve possuir as seguintes características:</p>
+			<ul>
+				<li>Ser acurado e equivalente, representar o mesmo conteúdo e função da imagem;</li>
+				<li>Ser sucinto, a função e/ou conteúdo devem ser descritas de forma sintética, poucas palavras ou uma frase curta.</li>
+				<li>Não ser redundante ou prover a mesma informação já apresentada no contexto da imagem.</li>
+				<li>Não iniciar com "imagem de...", "gráfico de..." ou "foto de..." para descrever a imagem. É desnecessária e redundante a informação de que aquele conteúdo apresentado é uma imagem.</li>
+			</ul>
+			<p>Um outro aspecto importante a considerar é que <strong class="min">legenda</strong> é diferente de <strong class="min">texto alternativo</strong>. Legenda são utilizadas para contextualizar ou acrescentar informações à imagem.</p>
+		</div>
+
+		<p class="intro-text">Cofira como adicionar uma imagem, com descrição no editor, conforme ilustra a figura a seguir.</p>
+		
+		<figure class="exemplo-cabecalho">
+			<img src="{% static 'img/adicionar_imagem.png' %} " alt="Como criar uma imagem na ferramenta"/>
+			<figcaption>Adicionar imagem</figcaption>
+		</figure>		
+		
+		<br/>
+
+		<figure class="exemplo-cabecalho">
+			<img src="{% static 'img/adicionar_descricao.png' %} " alt="Como adicionar uma descrição na imagem"/>
+			<figcaption>Descrição imagem</figcaption>
+		</figure>	
+
+		<br/>
+		<p class="intro-text">Esses exemplos são direcionados ao uso em imagens, porém os princípios podem ser aplicados a qualquer outra mídia de conteúdo não-textual na internet. Mais exemplos de descrição, podem ser consultados no <a href=" {% static 'file/O-uso-correto-do-texto-alternativo.pdf' %} " target="_blank" title="Arquivo PDF">tutorial</a> elaborado pelo Departamento de Governo Eletrônico Brasileiro.</p>
+		
+	</article>
+</section>
+
+
+
+
+</body>

@@ -1,0 +1,94 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>			
+<html lang="pt-br">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/estilo.css' %}" type="text/css" />
+	<title>Tabelas</title>
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+		
+</head>	
+<body>
+<section>
+    <nav class="voltar">
+        <a href="{% url 'menuInicial' %}">Voltar</a>
+    </nav>
+	<article>
+		<h1>Tabelas</h1>
+		
+		<p class="intro-text">Para pessoas sem problemas de visão, as informações contidas em tabelas são compreendidas apenas avaliando o conteúdo da tabela. Dados específicos são encontrados cruzando visualmente colunas e linhas. No entanto para pessoas portadoras de deficiência visual, a compreensão e obtenção de dados de uma tabela não é uma tarefa fácil se essa tabela for construída de forma não acessível. Pessoas portadoras de deficiência visual utilizam-se geralmente de leitores de tela. Os leitores de tela não lêem a "tela" e sim decodificam a sua estrutura HTML.</p>
+		
+		<div class="obs">
+			<p><strong>Importante: </strong></p>
+			<ul>
+				<li>A finalidade da tabela é apresentar dados tabulares. Não utilize tabelas para diagramar e/ou formatar conteúdo, pois esta prática causa problemas não só a acessibilidade, mas também de performance no carregamento da página.</li>
+				<li>Mesmo com todos os elementos que proporcionem a acessibilidade, tabelas complexas são de difícil compreensão para o usuário que utiliza leitores de tela. Sempre que possível devem ser usadas tabelas simples. Quando possível, as tabelas complexas devem ser divididas em tabelas simples.</li>
+			</ul>
+		
+		</div>
+		<p class="intro-text">Ao criar uma tabela, é fundamental considerar os seguintes elementos:</p>		
+		<h2 class="ttabela">Descrição da tabela</h2>
+		<p class="intro-text">Item fundamental para ajudar o usuário a interpretar a tabela. Na descrição são inseridas informações relacionadas a sua finalidade primária e estrutura geral.
+		
+		<h2 class="ttabela">Cabeçalhos da Tabela</h2>
+		
+		 <p class="intro-text">Usuários sem problemas de visão, em geral, fazem a leitura dos cabeçalhos no topo de uma coluna e no início de uma linha para identificar o conteúdo de uma determinada célula da tabela. Uma tarefa bem simples que requer apenas a identificação de cabeçalhos e de dados contidos na tabela.</p>
+		<p class="intro-text">Cofira como adicionar uma tabela, com descrição no editor, conforme ilustra a figura a seguir.</p>		
+		<figure class="exemplo-cabecalho">
+			<img src="{% static 'img/criar_tabela.png' %} " alt="Como criar uma tabela na ferramenta"/>
+			<figcaption>Adicionar tabela</figcaption>
+		</figure>		
+		
+		<br/>
+
+		<figure class="exemplo-cabecalho">
+			<img src="{% static 'img/tabela_cabeçalho.png' %} " alt="Como adicionar uma descrição na tabela"/>
+			<figcaption>Cabeçalho tabela</figcaption>
+		</figure>	
+
+		<br/>
+	
+		<h2 class="ttabela">Exemplo de tabela acessível</h2>
+		
+		<table summary="Oferta de cursos - tabela estruturada em: nome do curso,
+professor, resumo da disciplina e carga horária">
+			<caption>Oferta de cursos - Primeiro semestre</caption>
+			<tr>
+				<th id="t1" abbr="Nome">Nome do Curso</th>
+				<th id="t2" >Professor</th>
+				<th id="t3" >Resumo</th>
+				<th id="t4" abbr="carga">Carga horária</th>
+			</tr>
+			<tr>
+				<td header="t1">Gravura – conceitos básicos</td>
+				<td header="t2">Eunice Lobato</td>
+				<td header="t3">História da gravura, estilos, gráfica. Visita aos ateliês.
+				</td>
+				<td header="t4">40h</td>
+			</tr>
+			<tr>
+				<td header="t1">Gravura em metal</td>
+				<td header="t2">Ione Rocha</td>
+				<td header="t3">Trabalhos práticos de gravura em metal. </td>
+				<td header="t4">160h</td>
+			</tr>
+			<tr>
+				<td header="t1">Xilogravura</td>
+				<td header="t2">Heli Santos</td>
+				<td header="t3">Trabalhos práticos em xilogravura.</td>
+				<td header="t4">160h</td>
+			</tr>
+		</table>
+		
+	</article>
+</section>
+
+
+
+
+</body>

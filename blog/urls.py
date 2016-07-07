@@ -49,4 +49,9 @@ urlpatterns = [
     url(r'^titulo/', TemplateView.as_view(template_name="Paginas-de-Orientacao/titulos.html"), name='show_error_titulo'),
     url(r'^paragrafos/', TemplateView.as_view(template_name="Paginas-de-Orientacao/paragrafos.html"), name='show_error_paragrafo'),
 
+    url(r'^texto-alternativo-voltar/', TemplateView.as_view(template_name="Paginas-de-Orientacao/texto-alternativo-voltar.html"), name='show_error-voltar'),
+    url(r'^tabela-voltar/', TemplateView.as_view(template_name="Paginas-de-Orientacao/tabela-voltar.html"), name='show_error_tabela-voltar'),
+    url(r'^titulo-voltar/', TemplateView.as_view(template_name="Paginas-de-Orientacao/titulos-voltar.html"), name='show_error_titulo-voltar'),
+    url(r'^paragrafos-voltar/', TemplateView.as_view(template_name="Paginas-de-Orientacao/paragrafos-voltar.html"), name='show_error_paragrafo-voltar'),
+
 ]
