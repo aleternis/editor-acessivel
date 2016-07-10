@@ -148,7 +148,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'paste_text_sticky': True,
     'paste_text_sticky_default' : True,
     'valid_styles' : 'font-weight,font-style,text-decoration',
-    'height' : '700',
+    'height' : '450',
 }
 
 
