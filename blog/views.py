@@ -381,7 +381,7 @@ def is_exam_completed(exam):
     questions_done = Question.objects.filter(exam=exam).count()
     has_essay = exam.template.essay
     if has_essay:
-        if not is_essay_completed:
+        if not is_essay_completed(exam):
             return False
     if total_questions==questions_done:
         return True

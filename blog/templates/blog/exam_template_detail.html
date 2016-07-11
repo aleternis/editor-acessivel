@@ -10,8 +10,8 @@
 			<div class="caption">
 				<h1>{{ exam_template.name }} <a class="btn btn-default" href="{% url 'exam_template_edit' pk=exam_template.pk %}"><span class="glyphicon glyphicon-pencil"></span> Editar</a> </h1> 
 				<hr>
-				<h3>{{ exam_template.questions }}</h3>
-				<h3>{{ exam_template.answers }}</h3>
+				<h3>Número de questões: {{ exam_template.questions }}</h3>
+				<h3>Número de alternativas: {{ exam_template.answers }}</h3>
 				{% if exam_template.essay %}
 					<hr>
 					<h3>Contém Redação</h3>
