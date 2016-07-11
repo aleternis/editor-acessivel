@@ -14,13 +14,10 @@
         {{ form.media }}
         {{ form.as_p }}
 
-        <button type="submit" class="save btn btn-default">Salvar</button>
-    </form>
-</div>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Dicas de acessibilidade</button>
 
-    <div class=" col-sm-9"> 
-        <button type="button" class="btn btn-default btn-md center-block" data-toggle="modal" data-target="#myModal" onclick="mostrarDica()">Dicas de acessibilidade</button>
-    </div>
+        <button type="submit"  class="save btn btn-default">Salvar</button>
+    </form>
 </div>
 
 <script>

@@ -12,13 +12,8 @@
 
 .content {
     margin-left: 40px;
+    margin-right: 40px;
 }
-.menulateral{
-    margin-left: -40px;
-    padding-left: 10px;
-
-}
-
 
 
 .date {
@@ -28,6 +23,7 @@
 
 .save {
     float: right;
+
 }
 
 .post-form textarea, .post-form input {
@@ -91,5 +87,4 @@ max-width: 100%;
 
 
 }
-
 

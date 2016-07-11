@@ -3,11 +3,21 @@
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
-  <h1>Registre-se</h1>
+ 
 
-  <form action="" method="post">
-  	  {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Salvar">
-  </form>
+<div class="row">
+	<div class="col-md-5 col-md-offset-3">
+  		<h1>Cadastrar</h1>
+
+
+	  	<form class="post-form" method="post">
+	  	  	{% csrf_token %}
+	      	{{ form.as_p }}
+	      	<input type="submit" value="Salvar">
+	  	</form>
+
+
+
+	</div>
+</div>
 {% endblock %}

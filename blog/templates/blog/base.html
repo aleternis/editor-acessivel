@@ -1,10 +1,11 @@
 {% load staticfiles %}
 <html>
 <head>
+    
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
 
 
@@ -17,13 +18,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<style type="text/css">
-
-  }
-  </style>
-
-
 
 
 
@@ -104,14 +98,11 @@
 
 </div>
 <div class="content">
-    <div class="row">
-        <div class="col-md-15">
             {% block content %}
             <h1> Editor de de provas</h1>
 
             <h1>Informacoes da prova</h1>
             {% endblock %}
-        </div>
     </div>
 </body>
 </html>
