@@ -8,7 +8,7 @@
 <script type="text/javascript" src="{% static 'javascript/textValidation.js' %}"></script>
 
 
-<div class="col-md-9">    
+<div class="col-md-9 col-sm-9">    
     <form method="POST" class="post-form" onsubmit="return(validateError());">{% csrf_token %}
         
         {{ form.media }}
