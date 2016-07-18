@@ -149,7 +149,7 @@ def question_list(request, pk):
     questions_done = questions.count()
     has_essay = exam.template.essay
     return render(request, 'blog/question_list.html', {'questions': questions, 'questions_done':questions_done,
-        'total_questions':total_questions,'exam_pk':pk, 'has_essay': has_essay})
+        'total_questions':total_questions,'exam':exam, 'has_essay': has_essay})
 
 @permission_required('blog.add_question',raise_exception=True)
 def choose_exam(request):
