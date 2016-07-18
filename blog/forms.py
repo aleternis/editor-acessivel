@@ -19,6 +19,7 @@ class UserCreateForm(UserCreationForm):
         self.fields['username'].label = u"Usuário"
         self.fields['password1'].label = u"Senha"
         self.fields['password2'].label = u"Confirme sua senha"
+        self.fields['password1'].help_text = "A senha deve conter pelo menos 8 caracteres e conter letras e digítos."
         self.fields['password2'].help_text = "Repita a senha para verificação."
 
 
